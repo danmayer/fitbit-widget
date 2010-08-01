@@ -1,0 +1,41 @@
+html, body {
+              font: 12px/15px sans-serif;
+              background: #fff;
+              //padding: 3px;
+              color: #000;
+              margin: 0;
+              -webkit-text-size-adjust: none;
+               text-align:center;
+              background-color:#fff;
+              color:#333333;
+              font-family: Helvetica,sans-serif;
+            }
+
+.iphone-scrollcontainer { }
+.iphone-scroll { list-style: none; padding:0; margin:0; font-family:Georgia, Times, serif; font-size:15px; }
+.iphone-scroll li {  }
+.iphone-scroll ul { list-style: none; padding:0; margin:0; }
+.iphone-scroll ul li {  }
+.iphone-scroll ul li { display:block; text-decoration:none; color:#000000; background-color:#FFFFFF; line-height:25px;
+  border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#CCCCCC; padding-left:10px; cursor:pointer; }
+.iphone-scroll ul li:hover { color:#FFFFFF; background-image:url(/hover.png); background-repeat:repeat-x; }
+
+.iphone-scroll ul li.nohover { color:#000000; background-color:#FFFFFF; background-image:none; }
+
+.iphone-scroll ul li strong { margin-right:10px; }
+ 
+.nav-indicator { line-height:20px; background-image:url(/nav-indicator-bg.png); background-repeat:repeat-x; color:#FFFFFF; text-indent:20px; }
+ 
+.nav-indicator-fixed { line-height:20px;
+ background-image:url(/nav-indicator-bg.png);
+ background-repeat:repeat-x;
+ color:#FFFFFF;
+ text-indent:20px;
+ position:fixed;
+ /*width:320px;*/ }
+
+li.footer { color:#FFFFFF; background-image:url(/hover.png); background-repeat:repeat-x; line-height:30px;}
+li.footer a { color:#81F7F3 }
+
+.header { color:#FFFFFF; background-image:url(/hover.png); background-repeat:repeat-x; line-height:30px;}
+.header a { color:#81F7F3 }

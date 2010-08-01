@@ -1,0 +1,54 @@
+<html>
+<head>
+<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript">
+    $(function() {
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline(); 
+
+        /* Use 'html' instead of an array of values to pass options 
+        to a sparkline with data in the tag */
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
+    });
+    </script>
+
+<link rel='stylesheet' href='/base.css' type='text/css' media="screen,
+projection">
+<meta name = "viewport" content = "width = device-width">
+</head>
+
+<body>
+
+To use this service, your fitbit email and password are required.
+(to get your data from the fitbit API)<br/>
+    <form action='/account/edit' method='post'>
+    Email: <input type='text' name='email' /><br/>
+    Password: <input type='password' name='password' /><br/>
+    <input type='submit' name='save' value='save' />
+    </form>
+    <br/>
+    Once your user and password are added you should be able to embed a widget with the code below.<br/>
+    <textarea cols='50' rows='5'><iframe height="320px"
+    frameborder="1" width="200px" scrolling="no" src="http://<%=
+    "#{request.env['HTTP_HOST']}/widget/#{@account.token}" %>" name="fitbit"></iframe></textarea>
+    <br/><br/>
+    Preview:<br/>
+    <iframe height="320px" frameborder="1" width="200px"
+    scrolling="no" src="/widget/#{account.token}"
+    name="fitbit"></iframe>
+
+<br/><br/><br/>
+<!--
+or, I don't want a widget I came to get a backup of my fitbit data.
+<a href="/backup">Backup JSON Now!</a>
+<br/>
+<a href="/backup_simple">Backup HTML Now!</a>
+-->
+
+<%=erb :footer %>
+
+</body>
+</html>

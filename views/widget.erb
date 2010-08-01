@@ -1,0 +1,90 @@
+<html>
+<head>
+<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline(); 
+
+        /* Use 'html' instead of an array of values to pass options 
+        to a sparkline with data in the tag */
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
+    });
+    </script>
+<link rel='stylesheet' href='/base.css' type='text/css' media="screen,
+        projection">
+<meta name = "viewport" content = "width = device-width">
+</head>
+<body>
+<div class="iphone-scrollcontainer">
+   <ul class="iphone-scroll">
+      <li>
+        <div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator">
+<a href="http://fitbit.com" target="_parent">Fitbit</a> This Weeks Average
+        </div>
+        <ul>
+
+<li>Steps <%= @avg_steps %> 
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['steps'] %>,
+<% end %>
+</span>
+</li>
+
+<li>Calories <%= @avg_calories %>
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['calories'] %>,
+<% end %>
+</span>
+</li>
+
+<li>Miles Walked <%= @avg_miles %>
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['miles_walked'] %>,
+<% end %>
+</span>
+</li>
+
+	   
+         </ul>
+      </li>
+      <li>
+<div class="nav-indicator-fixed"></div>
+        <a name="A"></a>
+        <div class="nav-indicator" id="nav-a">
+<a href="http://fitbit.com" target="_parent">Fitbit</a> totals yesterday
+        </div>
+        <ul>
+<li>Calories Burned <%= @recent_data['calories'] %> </li>
+<li>Steps Taken <%= @recent_data['steps'] %></li>
+<li>Miles Walked <%= @recent_data['miles_walked'] %></li>
+</ul>
+</li>
+
+<li>
+<div id="nav-indicator-fixed"></div>
+        <a name="A"></a>
+        <div class="nav-indicator" id="nav-a">
+Activity Durations
+        </div>
+        <ul>
+<li>Sedentary <%= @recent_data['sedentary_active'] %></li>
+<li>Lightly <%= @recent_data['lightly_active'] %></li>
+<li>Fairly <%= @recent_data['fairly_active'] %></li>
+<li>Very <%= @recent_data['very_active'] %></li>
+</ul>
+</li>
+
+<li class='footer'>Powered by <a href="http://fitbit.com"
+target="_parent">Fitbit</a></li>
+
+</ul>
+</div>
+</body>
+</html>

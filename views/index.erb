@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel='stylesheet' href='/base.css' type='text/css' media="screen, projection"> 
+<meta name = "viewport" content = "width = device-width">
+</head>
+<body>
+<div class="iphone-scrollcontainer">
+   <ul class="iphone-scroll">
+      <li>
+        <div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator">
+          Fitbit mini
+        </div>
+        <ul>
+        <li class="nohover">
+          <a href="/">Fitbit mini</a> is a simple way to view fitbit data. Embed it in a blog, or for mobile friendly viewing. Fitbit mini, isn't assocaited with <a href="http://fitbit.com">Fitbit</a> in any way, just a fan.
+        </li> 
+  <li><a href="/account">Create Account or Login</a></li>
+  <% if session["id"]!=nil %>
+  <li><a href='/logout'>logout</a></li>
+  <% end %>
+  </ul>
+
+  <li>
+  Example widget:<br/>
+  <iframe height="350px" frameborder="0" width="210px" scrolling="no" src="/widget/example" name="fitbit"></iframe>
+  <br/>
+  </li>
+
+  <li>
+  This is an opensource project, get the code.
+  <br/>
+  </li> 
+  <li class='footer'>
+  Data Powered by <a href="http://fitbit.com" target="_parent">Fitbit</a>
+  </li>
+
+ </ul>
+</div>
+</body>
+</html>

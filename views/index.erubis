@@ -1,0 +1,20 @@
+<html>
+<head>
+   <title><%= title %></title>
+   <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   <% if defined? formats && formats %>
+   <div id='formats'>
+     Formats: <a href="/">HTML</a> | <a href='latex'>LaTeX</a> | <a href='markdown'>Markdown</a>
+   </div>
+   <% end %>
+   <div id="resume">
+      <%= resume %>
+   </div>
+   </br>
+   <div id='footer'>
+     This resume is Ruby, powered by <a href="http://github.com/danmayer/Resume">Ruby Resume</a>.
+   </div>
+</body>
+</html>

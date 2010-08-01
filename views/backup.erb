@@ -1,0 +1,96 @@
+<html>
+<head>
+<script type="text/javascript" charset="utf-8"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+src="/jquery.offline.js"></script>
+<script type="text/javascript" charset="utf-8" src="/json.js"></script>
+
+
+    <script type="text/javascript">
+       jQuery(document).ready(function($) {
+  // Since jQuery.retrieveJSON delegates to jQuery's Ajax
+  // to make requests, we can just set up normal jQuery
+  // Ajax listeners.
+  $("#loading").ajaxStart(function() { $(this).show(); });
+  $("#loading").ajaxStop(function() {  $(this).hide(); });
+
+  var updateArticles = function(callback) {
+    $.retrieveJSON("/backup_data.json", function(json, status) {
+      alert(status);
+      var content = json;
+      $("#articles").empty().append(content);
+    });
+  };
+
+  var updateArticlesGet = function(callback) {
+    $.retrieveGet("/backup_data", function(json, status) {
+      alert(status);
+      var content = json;
+      $("#articles").empty().append(content);
+    });
+  };
+
+  // Immediately try to retrieve the data. If the cached
+  // data is available, it will be used.
+  //
+  // If the user is online, it will kick off a request for
+  // updated content in the background. If not, it will
+  // queue the request for later.
+  updateArticlesGet();
+});
+    </script>
+
+<style>
+	html, body {
+		font: 12px/15px sans-serif;
+		background: #fff;
+		padding: 3px;
+		color: #000;
+		margin: 0;
+         	-webkit-text-size-adjust: none;
+		}
+	#sidebar, #footer {
+		display: none;
+		}
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: normal;
+		margin-bottom: 0.3em;
+		}
+	#content img { 
+		max-width: 250px;
+		}
+	.center {
+		width: 100%; !important;
+		text-align: center;
+		}
+	a:link, a:visited {
+		text-decoration: underline;
+		color: #0000CC;
+		}
+	a:hover, a:active {
+		text-decoration: underline;
+		color: #660066;
+		}
+
+
+	ul, ol { margin-top: 0.1em;
+	  margin-bottom: 0.2em;
+	  margin-left:1.5em;
+	  padding-left:0px;
+	   }
+	li { margin-bottom:0.2em; }
+
+</style>
+
+</head>
+
+<body>
+
+    Getting backup data...
+    <div id="loading"><img src="/loading.gif" alt="loading..." /></div>
+    <div id="articles">
+    </div>
+
+</body>
+</html>
