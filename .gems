@@ -3,4 +3,5 @@ ruby-fitbit --version 0.2.3
 chronic
 rack-ssl-enforcer
 dm-core --version 0.10.2
-dm-validations --version 0.10.2 
+dm-validations --version 0.10.2
+dm-timestamps --version 0.10.2
