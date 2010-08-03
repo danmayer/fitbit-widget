@@ -15,7 +15,7 @@ class ResumeTest < Test::Unit::TestCase
   def test_displays_greeting
     get '/'
     assert last_response.ok?
-    assert_match "Create your own custom fitbit widget", last_response.body
+    assert_match "simple way to view fitbit data.", last_response.body
   end
 
   def test_it_displays_login
