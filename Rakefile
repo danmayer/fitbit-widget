@@ -78,7 +78,7 @@ end
 
 namespace :heroku do
 
-  desc "create a heroku project for your resume"
+  desc "create a heroku project for you site"
   task :create do
     unless ENV.include?("name")	
       raise "usage: rake heroku:create name=PROJECT_NAME # example danmayer-resume\n" 
@@ -86,6 +86,7 @@ namespace :heroku do
     project_name = ENV['name']
     puts "creating heroku project #{project_name}"
     puts `heroku create #{project_name}`
+    puts `git remote add heroku-production git@heroku.com:#{project_name}.git`
   end
 
   #todo make the first create, build the staging env by default
@@ -105,7 +106,7 @@ end
 namespace :deploy do
   desc "Deploy production to Heroku."
   task :production do
-    `git push heroku master`
+    `git push heroku-production master`
   end
 
   desc "Deploy staging to Heroku."
