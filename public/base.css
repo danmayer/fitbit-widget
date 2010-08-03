@@ -25,6 +25,7 @@ html, body {
 .iphone-scroll ul li strong { margin-right:10px; }
  
 .nav-indicator { line-height:20px; background-image:url(/nav-indicator-bg.png); background-repeat:repeat-x; color:#FFFFFF; text-indent:20px; }
+.nav-indicator a { color:#81F7F3 }
  
 .nav-indicator-fixed { line-height:20px;
  background-image:url(/nav-indicator-bg.png);

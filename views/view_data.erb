@@ -1,0 +1,82 @@
+      <li>
+        <div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator">
+<a href="http://fitbit.com" target="_parent">Fitbit</a>
+	  <% if @start_date && @end_date %>
+	  <%= short_date_span(@start_date, @end_date) %>
+	  <% else %>
+	  This Weeks Average
+	  <% end %>
+        </div>
+        <ul>
+
+<li>Steps <%= @avg_steps %> 
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['steps'] %>,
+<% end %>
+</span>
+</li>
+
+<li>Calories <%= @avg_calories %>
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['calories'] %>,
+<% end %>
+</span>
+</li>
+
+<li>Miles Walked <%= @avg_miles %>
+<span class="inlinebar">
+<% @aggregate_data.keys.sort.each do |key| %>
+<%= @aggregate_data[key]['miles_walked'] %>,
+<% end %>
+</span>
+</li>
+
+	   
+         </ul>
+      </li>
+
+      <% if @navigate %>
+      <li>
+<div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator" id="nav-a">
+<a href="/home?previous=<%=format_date(@start_date)%>">previous</a> | <%= format_date(@start_date) %>
+        <% unless format_date(Time.now)==format_date(@start_date) %>
+	  | <a href="/home?next=<%=format_date(@start_date)%>">next</a>
+	<% end %>
+        </div>
+	</li>
+      <% end %>
+	
+	<li>
+<div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator" id="nav-a">
+<a href="http://fitbit.com" target="_parent">Fitbit</a> totals
+	    <% if @start_date %>
+	  <%= format_date(@start_date) %>
+	  <% else %>
+	  yesterday
+	  <% end %> 
+        </div>
+        <ul>
+<li>Calories Burned <%= @recent_data['calories'] %> </li>
+<li>Steps Taken <%= @recent_data['steps'] %></li>
+<li>Miles Walked <%= @recent_data['miles_walked'] %></li>
+</ul>
+</li>
+
+<li>
+<div id="nav-indicator-fixed"></div>
+        <a name="A"></a>
+        <div class="nav-indicator" id="nav-a">
+Activity Durations
+        </div>
+        <ul>
+<li>Sedentary <%= @recent_data['sedentary_active'] %></li>
+<li>Lightly <%= @recent_data['lightly_active'] %></li>
+<li>Fairly <%= @recent_data['fairly_active'] %></li>
+<li>Very <%= @recent_data['very_active'] %></li>
+</ul>
+</li>

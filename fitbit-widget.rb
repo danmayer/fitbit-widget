@@ -26,6 +26,10 @@ class Account
   }
   property :fitbit_email,      String
   property :fitbit_pass,      String
+
+  def complete?
+    fitbit_email && fitbit_pass
+  end
 end
 
 configure :production do
@@ -62,15 +66,89 @@ def open_id_auth_uri
   "#{CALLBACK_URI_PREFIX}fitbit-widget.rpxnow.com/openid/embed?token_url=#{encoded_callback_uri}"
 end
 
-# actions
+def account_complete?(account)
+  account!=nil && account.complete?
+end
 
+def format_date(date)
+  date.strftime("%Y-%m-%d")
+end
+
+def short_date_span(start_date, end_date)
+  "#{end_date.strftime("%m/%d")} - #{start_date.strftime("%m/%d")}"
+end
+
+def get_account_data(account, start_date = nil, end_date = nil)
+  start_date ||= Chronic.parse('1 day ago')
+  end_date ||= Chronic.parse('8 days ago')
+
+  #TODO move to cache method
+  cache_path = "tmp/#{account.fitbit_email}-#{format_date(start_date)}.json"
+  data = if File.exists?(cache_path)
+           JSON.parse(File.read(cache_path))
+         else
+           @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
+           data = @fitbit.get_avg_data(start_date, end_date) 
+           #for faster debugging
+           #data = {'steps' => 0.22, 'calories' => 0.22, 'miles_walked' => 0.22}
+           File.open(cache_path, 'w') {|f| f.write(data.to_json) }
+           data
+         end
+  
+  cache_path = "tmp/#{account.fitbit_email}-aggregate-#{format_date(start_date)}.json"
+  aggregate_data = if File.exists?(cache_path)
+                     JSON.parse(File.read(cache_path))
+                   else
+                     @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass) unless @fitbit
+                     aggregate_data = @fitbit.get_aggregated_data(start_date, end_date) 
+                     File.open(cache_path, 'w') {|f| f.write(aggregate_data.to_json) }
+                     aggregate_data
+                   end
+  
+  @avg_steps = '%.2f' % data['steps'].to_f
+  @avg_calories = '%.2f' % data['calories'].to_f
+  @avg_miles = '%.2f' % data['miles_walked'].to_f
+  
+  @aggregate_data = aggregate_data
+  @aggregate_data = {} unless @aggregate_data
+  @recent_data = @aggregate_data.sort.last.last
+end
+
+# actions
 get '/' do
-  erb :index
+  if session["id"]
+    redirect '/home'
+  else
+    erb :index
+  end
 end
 
 get '/logout' do
   session["id"] = nil
   redirect '/'
+end
+
+get '/home' do
+  if session["id"]
+    @account = Account.get(session["id"])
+    if account_complete?(@account)
+      @navigate = true
+      @start_date = if params[:previous]
+                      Chronic.parse('yesterday', :now => Chronic.parse(params[:previous]))
+                    elsif params[:next]
+                      Chronic.parse('tomorrow', :now => Chronic.parse(params[:next]))
+                    else
+                      Time.now
+                    end
+      @end_date = Chronic.parse('7 days ago', :now => @start_date)
+      get_account_data(@account, @start_date, @end_date)
+      output = erb :home
+    else
+      redirect '/account'
+    end
+  else
+    redirect '/account'
+  end
 end
 
 get '/account' do
@@ -90,6 +168,15 @@ get '/account' do
 EOF
   end
   output
+end
+
+get '/get_widget' do
+  if session["id"]
+    @account = Account.get(session["id"])
+    erb :get_widget
+  else
+    redirect '/account'
+  end
 end
 
 post '/account/edit' do
@@ -125,7 +212,11 @@ post '/id_callback' do
       account ||= Account.new(:id => unique_identifier)
       account.save!
       session["id"] ||= unique_identifier
-      redirect '/account'
+      if account_complete?(account)
+        redirect '/home'
+      else
+        redirect '/account'
+      end
     else
       # flash[:notice] = 'Log in failed'
       redirect '/'
@@ -175,48 +266,15 @@ end
 #TODO doesn't this fail then, it gets the logged in session id not using hte regexed ID
 get %r{^/widget/(.*)} do |id|
   account = Account.get(:token => id)
-  #default to the example account (mine)
+  #default to the example account (mine, to show an example)
   account ||= OpenStruct.new(:fitbit_email => ENV['fitbit_email'], :fitbit_pass => ENV['fitbit_pass'])
 
   begin
-    start_date = Chronic.parse('1 day ago')
-    end_date = Chronic.parse('8 days ago')
-
-    #TODO move to cache method
-    cache_path = "tmp/#{account.fitbit_email}-#{start_date.strftime("%Y-%m-%d")}.json"
-    data = if File.exists?(cache_path)
-             JSON.parse(File.read(cache_path))
-           else
-             @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
-             data = @fitbit.get_avg_data(start_date, end_date) 
-             #for faster debugging
-             #data = {'steps' => 0.22, 'calories' => 0.22, 'miles_walked' => 0.22}
-             File.open(cache_path, 'w') {|f| f.write(data.to_json) }
-             data
-           end
-
-    cache_path = "tmp/#{account.fitbit_email}-aggregate-#{start_date.strftime("%Y-%m-%d")}.json"
-    aggregate_data = if File.exists?(cache_path)
-                       JSON.parse(File.read(cache_path))
-                     else
-                       @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass) unless @fitbit
-                       aggregate_data = @fitbit.get_aggregated_data(start_date, end_date) 
-                       File.open(cache_path, 'w') {|f| f.write(aggregate_data.to_json) }
-                       aggregate_data
-                     end
-
-    @avg_steps = '%.2f' % data['steps'].to_f
-    @avg_calories = '%.2f' % data['calories'].to_f
-    @avg_miles = '%.2f' % data['miles_walked'].to_f
-
-    @aggregate_data = aggregate_data
-    @aggregate_data = {} unless @aggregate_data
-    @recent_data = @aggregate_data.sort.last.last
+    get_account_data(account)
 
     erb :widget
   rescue NoMethodError, SocketError => error
     puts error
-    require 'ruby-debug'; debugger
-    output = 'Fitbit account information not correct or temporary account retreival error.'
+    'Fitbit account information not correct or temporary account retreival error.'
   end
 end

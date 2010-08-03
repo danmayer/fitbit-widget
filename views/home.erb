@@ -28,24 +28,8 @@ projection">
         <div class="nav-indicator">
         Fitbit Mini Viewer
         </div>
-	
-	<li>
-To use this service, your fitbit email and password are required.
-(to get your data from the fitbit API)
-	</li>
-	<li>
-    <form action='/account/edit' method='post'>
-    Email:
-	<input type='text' name='email' placeholder='<%= @account.fitbit_email %>' />
-	</li>
-	<li>
-    Password:
-	<input type='password' name='password' placeholder='<%= @account.fitbit_pass.gsub(/./,'*') %>' />
-	</li>
-	<li>
-    <input type='submit' name='save' value='save' />
-    </form>
-	  </li>
+
+<%=erb :view_data %>
 	  
 	  <!--
 or, I don't want a widget I came to get a backup of my fitbit data.
