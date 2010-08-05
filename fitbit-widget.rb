@@ -78,6 +78,7 @@ def short_date_span(start_date, end_date)
   "#{end_date.strftime("%m/%d")} - #{start_date.strftime("%m/%d")}"
 end
 
+#TODO man this needs to be cleaned up, caching, repeated code, object creation
 def get_account_data(account, start_date = nil, end_date = nil)
   start_date ||= Chronic.parse('1 day ago')
   end_date ||= Chronic.parse('8 days ago')
@@ -142,7 +143,7 @@ get '/home' do
                     end
       @end_date = Chronic.parse('7 days ago', :now => @start_date)
       get_account_data(@account, @start_date, @end_date)
-      output = erb :home
+      output = erb :home, :layout => false
     else
       redirect '/account'
     end
@@ -262,8 +263,6 @@ get '/backup_data.json' do
 end
 
 #TODO move to production only 24 hr varnish HTTP cache
-#TODO main this needs to be cleaned up, caching, repeated code, object creation
-#TODO doesn't this fail then, it gets the logged in session id not using hte regexed ID
 get %r{^/widget/(.*)} do |id|
   account = Account.get(:token => id)
   #default to the example account (mine, to show an example)
@@ -272,7 +271,7 @@ get %r{^/widget/(.*)} do |id|
   begin
     get_account_data(account)
 
-    erb :widget
+    erb :widget, :layout => false
   rescue NoMethodError, SocketError => error
     puts error
     'Fitbit account information not correct or temporary account retreival error.'

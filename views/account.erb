@@ -3,18 +3,6 @@
 <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
 
-    <script type="text/javascript">
-    $(function() {
-        /** This code runs when everything has been loaded on the page */
-        /* Inline sparklines take their values from the contents of the tag */
-        $('.inlinesparkline').sparkline(); 
-
-        /* Use 'html' instead of an array of values to pass options 
-        to a sparkline with data in the tag */
-        $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
-    });
-    </script>
-
 <link rel='stylesheet' href='/base.css' type='text/css' media="screen,
 projection">
 <meta name = "viewport" content = "width = device-width">
@@ -54,7 +42,7 @@ or, I don't want a widget I came to get a backup of my fitbit data.
 <br/>
 <a href="/backup_simple">Backup HTML Now!</a>
  -->
-<%=erb :footer %>
+<%=erb :footer, :layout => false %>
 
 </body>
 </html>

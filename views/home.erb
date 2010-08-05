@@ -29,7 +29,7 @@ projection">
         Fitbit Mini Viewer
         </div>
 
-<%=erb :view_data %>
+<%=erb :view_data, :layout => false %>
 	  
 	  <!--
 or, I don't want a widget I came to get a backup of my fitbit data.
@@ -37,7 +37,7 @@ or, I don't want a widget I came to get a backup of my fitbit data.
 <br/>
 <a href="/backup_simple">Backup HTML Now!</a>
  -->
-<%=erb :footer %>
+<%=erb :footer, :layout => false %>
 
 </body>
 </html>

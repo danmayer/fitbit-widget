@@ -1,26 +1,3 @@
-<html>
-<head>
-<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
-
-    <script type="text/javascript">
-    $(function() {
-        /** This code runs when everything has been loaded on the page */
-        /* Inline sparklines take their values from the contents of the tag */
-        $('.inlinesparkline').sparkline(); 
-
-        /* Use 'html' instead of an array of values to pass options 
-        to a sparkline with data in the tag */
-        $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
-    });
-    </script>
-
-<link rel='stylesheet' href='/base.css' type='text/css' media="screen,
-projection">
-<meta name = "viewport" content = "width = device-width">
-</head>
-
-<body>
 <% unless account_complete?(@account) %>
 To use this service, your fitbit email and password are required.
 (to get your data from the fitbit API)<br/>
@@ -41,7 +18,4 @@ To use this service, your fitbit email and password are required.
     scrolling="no" src="/widget/#{account.token}"
     name="fitbit"></iframe>
 
-<%=erb :footer %>
-
-</body>
-</html>
+<%=erb :footer, :layout => false %>
