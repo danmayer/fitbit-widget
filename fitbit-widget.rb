@@ -137,7 +137,7 @@ get '/base.css' do
   headers['Cache-Control'] = "public; max-age=#{(60*60*24*30)}" # cache image for a month
   puts "get css"
   logger.info "css accessed"
-  data = File.read('public/base.css')
+  data = File.read('cached/base.css')
   send_data data, :filename => 'base.css', :type => "text/css"
 end
 
