@@ -12,6 +12,7 @@ require 'do_postgres'
 require 'ostruct'  
 require 'erb'
 require 'chronic'
+require 'logger'
 
 class Account
   include DataMapper::Resource
@@ -46,10 +47,12 @@ configure :production do
   #require 'rack-ssl-enforcer'
   #use Rack::SslEnforcer
 
-  log = File.new("log/sinatra_production.log", "a")
+  log = File.new("log/sinatra_production.log", "a+")
   STDOUT.reopen(log)
   STDERR.reopen(log)
-
+  $stdout.reopen(log)
+  $stderr.reopen(log)
+  LOGGER = Logger.new("log/sinatra_production.log") 
 end
 
 configure :development do
@@ -59,6 +62,7 @@ configure :development do
   DataMapper.auto_upgrade!
   #require 'rack/perftools_profiler'
   #use Rack::PerftoolsProfiler, :default_printer => 'gif'
+  LOGGER = Logger.new(STDOUT)
 end
 
 set :views, File.dirname(__FILE__) + '/views'
@@ -70,6 +74,10 @@ use Rack::Session::Cookie, :key => 'fitbit.session',
                            :secret => 'ILoveBatmanSoDoYou'
 
 # helpers
+def logger
+  LOGGER
+end
+
 def open_id_auth_uri
   encoded_callback_uri = URI.escape("#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/id_callback")
   "#{CALLBACK_URI_PREFIX}fitbit-widget.rpxnow.com/openid/embed?token_url=#{encoded_callback_uri}"
@@ -128,12 +136,14 @@ end
 get '/base.css' do
   headers['Cache-Control'] = "public; max-age=#{(60*60*24*30)}" # cache image for a month
   puts "get css"
+  logger.info "css accessed"
   data = File.read('public/base.css')
   send_data data, :filename => 'base.css', :type => "text/css"
 end
 
 get '/' do
   puts('hit fontpage')
+  logger.info "Index accessed"
   if session["id"]
     redirect '/home'
   else
