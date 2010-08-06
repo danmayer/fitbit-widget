@@ -52,7 +52,7 @@ configure :production do
   #STDERR.reopen(log)
   #$stdout.reopen(log)
   #$stderr.reopen(log)
-  #LOGGER = Logger.new("log/sinatra_production.log") 
+  LOGGER = Logger.new("log/sinatra_production.log") 
 end
 
 configure :development do
