@@ -13,6 +13,12 @@
         to a sparkline with data in the tag */
         $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
     });
+
+    function init(){
+    //add this in your javascript code to 'hide' the address bar  
+    window.scrollTo(0, 1);  
+    }
+
     </script>
 
 <link rel='stylesheet' href='/base.css' type='text/css' media="screen,projection">
@@ -20,7 +26,7 @@
 <link rel="apple-touch-icon" href="/icon.png">
 </head>
 
-<body>
+<body onload="init();">
 
 <%= yield %>
 

@@ -58,7 +58,12 @@ configure :development do
 end
 
 set :views, File.dirname(__FILE__) + '/views'
-enable :sessions
+#enable :sessions
+use Rack::Session::Cookie, :key => 'fitbit.session',
+                           #:domain => 'fitbit.heroku.com',
+                           #:path => '/',
+                           :expire_after => (60*60*24*30), # In seconds
+                           :secret => 'ILoveBatmanSoDoYou'
 
 # helpers
 def open_id_auth_uri
@@ -116,6 +121,12 @@ def get_account_data(account, start_date = nil, end_date = nil)
 end
 
 # actions
+get '/base.css' do
+  headers['Cache-Control'] = "public; max-age=#{(60*60*24*30)}" # cache image for a month
+  data = File.read('public/base.css')
+  send_data data, :filename => 'base.css', :type => "text/css"
+end
+
 get '/' do
   if session["id"]
     redirect '/home'
