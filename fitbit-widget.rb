@@ -47,12 +47,12 @@ configure :production do
   #require 'rack-ssl-enforcer'
   #use Rack::SslEnforcer
 
-  log = File.new("log/sinatra_production.log", "a+")
-  STDOUT.reopen(log)
-  STDERR.reopen(log)
-  $stdout.reopen(log)
-  $stderr.reopen(log)
-  LOGGER = Logger.new("log/sinatra_production.log") 
+  #log = File.new("log/sinatra_production.log", "a+")
+  #STDOUT.reopen(log)
+  #STDERR.reopen(log)
+  #$stdout.reopen(log)
+  #$stderr.reopen(log)
+  #LOGGER = Logger.new("log/sinatra_production.log") 
 end
 
 configure :development do
