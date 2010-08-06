@@ -46,6 +46,10 @@ configure :production do
   #require 'rack-ssl-enforcer'
   #use Rack::SslEnforcer
 
+  log = File.new("log/sinatra.log", "a")
+  STDOUT.reopen(log)
+  STDERR.reopen(log)
+
 end
 
 configure :development do
@@ -123,11 +127,13 @@ end
 # actions
 get '/base.css' do
   headers['Cache-Control'] = "public; max-age=#{(60*60*24*30)}" # cache image for a month
+  puts "get css"
   data = File.read('public/base.css')
   send_data data, :filename => 'base.css', :type => "text/css"
 end
 
 get '/' do
+  puts('hit fontpage')
   if session["id"]
     redirect '/home'
   else
