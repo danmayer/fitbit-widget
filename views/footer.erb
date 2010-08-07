@@ -1,6 +1,11 @@
 <li class='footer'>
-<a href='/home'>home</a> - <a href='/get_widget'>get widget</a>
+<a href='/home'>home</a>
+<% if session["id"] %> 
+- <a href='/get_widget'>get widget</a>
+<% end %>
 </li>
+<% if session["id"] %>
 <li class='footer'>
 <a href='/account'>account</a> - <a href='/logout'>logout</a>
 </li>
+<% end %>

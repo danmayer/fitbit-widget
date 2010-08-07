@@ -168,16 +168,7 @@ get '/account' do
     @account = Account.get(session["id"])
     output = erb :account
   else
-  output = <<-"EOF"
-  <html><head>
-<meta name = "viewport" content = "width = device-width">
-</head>
-<body>
-  <iframe src="#{open_id_auth_uri}" scrolling="no" frameBorder="no"
-        allowtransparency="true" style="width:400px;height:240px"></iframe>
-</body>
-</html>
-EOF
+    output = erb :account_login
   end
   output
 end
@@ -197,6 +188,21 @@ post '/account/edit' do
   account.fitbit_pass = params['password']
   account.save!
   redirect '/account'
+end
+
+post '/account/login' do
+  identifier = (params['email']+"fitbit"+params['password']).hash
+  account = Account.get(identifier) 
+  account ||= Account.new(:id => identifier)
+  session["id"] ||= identifier
+  account.fitbit_email = params['email']
+  account.fitbit_pass = params['password']
+  account.save!
+  if account_complete?(account)
+    redirect '/home'
+  else
+    redirect '/account'
+  end
 end
 
 post '/id_callback' do
@@ -235,6 +241,23 @@ post '/id_callback' do
     end
 end
 
+#TODO move to production only 24 hr varnish HTTP cache
+get %r{^/widget/(.*)} do |id|
+  account = Account.get(:token => id)
+  #default to the example account (mine, to show an example)
+  account ||= OpenStruct.new(:fitbit_email => ENV['fitbit_email'], :fitbit_pass => ENV['fitbit_pass'])
+
+  begin
+    get_account_data(account)
+
+    erb :widget, :layout => false
+  rescue NoMethodError, SocketError => error
+    puts error
+    'Fitbit account information not correct or temporary account retreival error.'
+  end
+end
+
+# the below methods are just a feature Idea I am testing, not in prod
 get '/backup' do
   account = Account.get(session["id"])
   erb :backup
@@ -271,20 +294,4 @@ get '/backup_data.json' do
   # @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
   # data = @fitbit.get_aggregated_data(start_date, end_date) 
   {'steps' => 0.22, 'calories' => 0.22, 'miles_walked' => 0.22}.to_json
-end
-
-#TODO move to production only 24 hr varnish HTTP cache
-get %r{^/widget/(.*)} do |id|
-  account = Account.get(:token => id)
-  #default to the example account (mine, to show an example)
-  account ||= OpenStruct.new(:fitbit_email => ENV['fitbit_email'], :fitbit_pass => ENV['fitbit_pass'])
-
-  begin
-    get_account_data(account)
-
-    erb :widget, :layout => false
-  rescue NoMethodError, SocketError => error
-    puts error
-    'Fitbit account information not correct or temporary account retreival error.'
-  end
 end
