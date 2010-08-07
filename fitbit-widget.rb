@@ -55,7 +55,6 @@ configure :development do
   DataMapper.auto_upgrade!
   #require 'rack/perftools_profiler'
   #use Rack::PerftoolsProfiler, :default_printer => 'gif'
-  LOGGER = Logger.new(STDOUT)
 end
 
 set :views, File.dirname(__FILE__) + '/views'
@@ -67,10 +66,6 @@ use Rack::Session::Cookie, :key => 'fitbit.session',
                            :secret => 'ILoveBatmanSoDoYou'
 
 # helpers
-# def logger
-#   LOGGER
-# end
-
 def open_id_auth_uri
   encoded_callback_uri = URI.escape("#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/id_callback")
   "#{CALLBACK_URI_PREFIX}fitbit-widget.rpxnow.com/openid/embed?token_url=#{encoded_callback_uri}"
