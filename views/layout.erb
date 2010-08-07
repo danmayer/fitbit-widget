@@ -2,6 +2,8 @@
 <head>
 <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/jquery.offline.js"></script>
+<script type="text/javascript" charset="utf-8" src="/json.js"></script>
 
     <script type="text/javascript">
     $(function() {
@@ -15,9 +17,49 @@
     });
 
     function init(){
-    //add this in your javascript code to 'hide' the address bar  
-    window.scrollTo(0, 1);  
+      //add this in your javascript code to 'hide' the address bar  
+      window.scrollTo(0, 1);
     }
+
+    var hideLoading = function() {
+      $("#loading").hide();
+    }
+
+    var accountGet = function(callback) {
+    $.retrieveGet("/account", function(json, status) {
+      var content = json;
+      $("#content").empty().append(content);
+      hideLoading();
+    });
+    return false;
+    };
+
+    var getHome = function(url) {
+    $.retrieveGet(url, function(json, status) {
+      var content = json;
+      $("#content").empty().append(content);
+      hideLoading();
+    });
+    return false;
+    };
+
+
+    jQuery(document).ready(function($) {
+    // Since jQuery.retrieveJSON delegates to jQuery's Ajax
+    // to make requests, we can just set up normal jQuery
+    // Ajax listeners.
+    $("#loading").ajaxStart(function() { $(this).show(); });
+    $("#loading").ajaxStop(function() {  $(this).hide(); });
+
+
+  // Immediately try to retrieve the data. If the cached
+  // data is available, it will be used.
+  //
+  // If the user is online, it will kick off a request for
+  // updated content in the background. If not, it will
+  // queue the request for later.
+  //updateArticlesGet();
+});
 
     </script>
 
@@ -27,7 +69,7 @@
 </head>
 
 <body onload="init();">
-
+<div id="loading" style="display:none"><img src="/loading.gif" alt="loading..." /></div>
 <div id="content">
 <%= yield %>
 </div>

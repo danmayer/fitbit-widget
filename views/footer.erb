@@ -1,5 +1,5 @@
 <li class='footer'>
-<a href='/home'>home</a>
+<a href='<% session["id"] ? '/home' : '/' %>'>home</a>
 <% if session["id"] %> 
 - <a href='/get_widget'>get widget</a>
 <% end %>
@@ -9,3 +9,6 @@
 <a href='/account'>account</a> - <a href='/logout'>logout</a>
 </li>
 <% end %>
+<li class='footer'>
+Data Powered by <a href="http://fitbit.com" target="_parent">Fitbit</a>
+</li>

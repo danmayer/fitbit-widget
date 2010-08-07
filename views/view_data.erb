@@ -34,7 +34,6 @@
 </span>
 </li>
 
-	   
          </ul>
       </li>
 
@@ -42,9 +41,10 @@
       <li>
 <div class="nav-indicator-fixed"></div>
         <div class="nav-indicator" id="nav-a">
-<a href="/home?previous=<%=format_date(@start_date)%>">previous</a> | <%= format_date(@start_date) %>
+        <a href="/home?previous=<%=format_date(@start_date)%>" onclick="return getHome('/home?previous=<%=format_date(@start_date)%>');">previous</a>
+        | <%= format_date(@start_date) %>
         <% unless format_date(Time.now)==format_date(@start_date) %>
-	  | <a href="/home?next=<%=format_date(@start_date)%>">next</a>
+	  | <a href="/home?next=<%=format_date(@start_date)%>" onclick="return getHome('/home?next=<%=format_date(@start_date)%>');">next</a>
 	<% end %>
         </div>
 	</li>

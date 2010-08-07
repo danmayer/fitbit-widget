@@ -126,7 +126,7 @@ get '/' do
   if session["id"]
     redirect '/home'
   else
-    erb :index
+    erb :index, :layout => !request.xhr?
   end
 end
 
@@ -149,7 +149,7 @@ get '/home' do
                     end
       @end_date = Chronic.parse('7 days ago', :now => @start_date)
       get_account_data(@account, @start_date, @end_date)
-      output = erb :home, :layout => false
+      output = erb :home
     else
       redirect '/account'
     end
