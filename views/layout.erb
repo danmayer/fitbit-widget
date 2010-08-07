@@ -35,14 +35,13 @@
     };
 
     var getHome = function(url) {
-    $.retrieveGet(url, function(json, status) {
+    $.retrieveGet(url, function(content, status) {
       $("#loading").show();
       $("#content").empty().hide();
-      var content = json;
       $("#content").append(content);
-      sparklines();
       hideLoading();
       $("#content").show();
+      sparklines();
     });
     return false;
     };
