@@ -36,10 +36,13 @@
 
     var getHome = function(url) {
     $.retrieveGet(url, function(json, status) {
+      $("#loading").show();
+      $("#content").empty().hide();
       var content = json;
-      $("#content").empty().append(content);
+      $("#content").append(content);
       sparklines();
       hideLoading();
+      $("#content").show();
     });
     return false;
     };
