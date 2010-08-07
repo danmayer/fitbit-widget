@@ -39,20 +39,13 @@ configure :production do
   #DataMapper.auto_migrate!
   DataMapper.auto_upgrade!
 
-  before do
-    unless (@env['HTTP_X_FORWARDED_PROTO'] || @env['rack.url_scheme'])=='https'
-      redirect "https://#{request.env['HTTP_HOST']}#{request.env["REQUEST_PATH"]}"
-    end
-  end
-  #require 'rack-ssl-enforcer'
-  #use Rack::SslEnforcer
-
-  #log = File.new("log/sinatra_production.log", "a+")
-  #STDOUT.reopen(log)
-  #STDERR.reopen(log)
-  #$stdout.reopen(log)
-  #$stderr.reopen(log)
-  LOGGER = Logger.new("log/sinatra_production.log") 
+  # before do
+  #     unless (@env['HTTP_X_FORWARDED_PROTO'] || @env['rack.url_scheme'])=='https'
+  #       redirect "https://#{request.env['HTTP_HOST']}#{request.env["REQUEST_PATH"]}"
+  #     end
+  #   end
+  require 'rack-ssl-enforcer'
+  use Rack::SslEnforcer
 end
 
 configure :development do
@@ -66,7 +59,7 @@ configure :development do
 end
 
 set :views, File.dirname(__FILE__) + '/views'
-#enable :sessions
+
 use Rack::Session::Cookie, :key => 'fitbit.session',
                            #:domain => 'fitbit.heroku.com',
                            #:path => '/',
@@ -74,9 +67,9 @@ use Rack::Session::Cookie, :key => 'fitbit.session',
                            :secret => 'ILoveBatmanSoDoYou'
 
 # helpers
-def logger
-  LOGGER
-end
+# def logger
+#   LOGGER
+# end
 
 def open_id_auth_uri
   encoded_callback_uri = URI.escape("#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/id_callback")
@@ -133,17 +126,8 @@ def get_account_data(account, start_date = nil, end_date = nil)
 end
 
 # actions
-get '/base.css' do
-  headers['Cache-Control'] = "public; max-age=#{(60*60*24*30)}" # cache image for a month
-  puts "get css"
-  logger.info "css accessed"
-  data = File.read('cached/base.css')
-  send_data data, :filename => 'base.css', :type => "text/css"
-end
-
 get '/' do
   puts('hit fontpage')
-  logger.info "Index accessed"
   if session["id"]
     redirect '/home'
   else

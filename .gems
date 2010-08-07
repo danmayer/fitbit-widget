@@ -1,7 +1,7 @@
 sinatra --version 1.0
 ruby-fitbit --version 0.2.3
 chronic
-rack-ssl-enforcer
+rack-ssl-enforcer --version 0.1.2
 dm-core --version 0.10.2
 dm-validations --version 0.10.2
 dm-timestamps --version 0.10.2
