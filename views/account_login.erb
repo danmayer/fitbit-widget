@@ -1,33 +1,24 @@
-<div class="iphone-scrollcontainer">
-   <ul class="iphone-scroll">
-      <li>
-        <div class="nav-indicator-fixed"></div>
-        <div class="nav-indicator">
-        Fitbit Mini Viewer
-        </div>
-	
-	<li>
+<ul>
+<li>
 Log in with Fitbit user/pass.<br/>
 (Fitbit account needed to get your data from the Fitbit API)
-	</li>
-	<li>
-    <form action='/account/login' method='post'>
-    Email:
-	<input type='text' name='email' />
-	</li>
-	<li>
-    Password:
-	<input type='password' name='password' />
-	</li>
-	<li>
-    <input type='submit' name='login' value='login' />
-    </form>
-	  </li>
-	  <li>
-<br/>
-  Or login with the options below <br/>
-  <iframe src="<%= open_id_auth_uri %>" scrolling="no" frameBorder="no"
-        allowtransparency="true" style="width:400px;height:240px"></iframe>
-          </li>
+</li>
+<form action='/account/login' method='post' id='loginForm'>
+<li>
+Email:
+<input type='text' name='email' id='email' />
+</li>
+<li>
+Password:
+<input type='password' name='password' id='password'/>
+</li>
+<li>
+<input type='submit' name='login' value='login' id='loginSubmit' onclick="return loginFormSubmit();"/>
+</li>
+</form>
 
-<%=erb :footer, :layout => false %>
+<li>
+<br/>
+Or login with the options below <br/>
+<iframe src="<%= open_id_auth_uri %>" scrolling="no" frameBorder="no"allowtransparency="true" style="width:400px;height:240px"></iframe>
+</li>

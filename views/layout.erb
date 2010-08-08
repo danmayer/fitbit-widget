@@ -26,11 +26,53 @@
     }
 
     var accountGet = function(callback) {
-    $.retrieveGet("/account", function(json, status) {
-      var content = json;
+    $.retrieveGet("/account", function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
     });
+    return false;
+    };
+
+    var widgetGet = function(callback) {
+    $.retrieveGet("/get_widget", function(content, status) {
+      $("#content").empty().append(content);
+      hideLoading();
+    });
+    return false;
+    };
+
+    var logoutGet = function(callback) {
+    $.get("/logout", function(content, status) {
+      $("#content").empty().append(content);
+      reloadFooter();
+      hideLoading();
+    });
+    return false;
+    };
+
+   var reloadFooter = function(callback) {
+    $.retrieveGet("/footer", function(content, status) {
+      $("#footer").empty().append(content);
+      hideLoading();
+    });
+    return false;
+    };
+
+    var loginFormSubmit = function() {
+      var email = $("input#email").val();
+      var pass = $("input#password").val();
+      var dataString = 'password='+ pass + '&email=' + email;
+      $.ajax({  
+       type: "POST",  
+       url: "/account/login",  
+       data: dataString,  
+       success: function(content) {  
+         $("#content").empty().append(content);
+         sparklines();
+         reloadFooter();
+         hideLoading();
+       }  
+      });  
     return false;
     };
 
@@ -48,20 +90,15 @@
 
     jQuery(document).ready(function($) {
     sparklines();
+
     // Since jQuery.retrieveJSON delegates to jQuery's Ajax
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
     //$("#loading").ajaxStart(function() { $(this).show(); });
     //$("#loading").ajaxStop(function() {  $(this).hide(); });
 
-
-  // Immediately try to retrieve the data. If the cached
-  // data is available, it will be used.
-  //
-  // If the user is online, it will kick off a request for
-  // updated content in the background. If not, it will
-  // queue the request for later.
-  //updateArticlesGet();
+    //immediately check to see if they should have thier account page or home page
+    //setFrontPageContent();
 });
 
     </script>
@@ -72,9 +109,23 @@
 </head>
 
 <body onload="init();">
-<div id="loading" style="display:none"><img src="/loading.gif" alt="loading..." /></div>
+<div id="loading" style="display:none"><img src="/loading.gif" alt="loading..." width='50%'/></div>
+<div class="iphone-scrollcontainer">
+   <ul class="iphone-scroll">
+      <li>
+        <div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator">
+        Fitbit Mini
+        </div>
 <div id="content">
 <%= yield %>
+</div>
+
+<ul class="iphone-scroll">
+<div id='footer'>
+<%=erb :footer, :layout => false %>
+</div>
+</ul>
 </div>
 
 </body>

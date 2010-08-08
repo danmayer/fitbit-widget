@@ -25,11 +25,11 @@ class Account
     digest << resource.id.to_s << Time.now.to_s << rand.to_s
     digest.to_s
   }
-  property :fitbit_email,      String
+  property :fitbit_email,     String
   property :fitbit_pass,      String
 
   def complete?
-    fitbit_email && fitbit_pass
+    fitbit_email && fitbit_pass && !fitbit_email.blank? && !fitbit_pass.blank?
   end
 end
 
@@ -39,11 +39,6 @@ configure :production do
   #DataMapper.auto_migrate!
   DataMapper.auto_upgrade!
 
-  # before do
-  #     unless (@env['HTTP_X_FORWARDED_PROTO'] || @env['rack.url_scheme'])=='https'
-  #       redirect "https://#{request.env['HTTP_HOST']}#{request.env["REQUEST_PATH"]}"
-  #     end
-  #   end
   require 'rack-ssl-enforcer'
   use Rack::SslEnforcer
 end
@@ -120,6 +115,20 @@ def get_account_data(account, start_date = nil, end_date = nil)
   @recent_data = @aggregate_data.sort.last.last
 end
 
+def render_home
+  @navigate = true
+  @start_date = if params[:previous]
+                  Chronic.parse('yesterday', :now => Chronic.parse(params[:previous]))
+                elsif params[:next]
+                  Chronic.parse('tomorrow', :now => Chronic.parse(params[:next]))
+                else
+                  Time.now
+                end
+  @end_date = Chronic.parse('7 days ago', :now => @start_date)
+  get_account_data(@account, @start_date, @end_date)
+  erb :home, :layout => !request.xhr?
+end
+
 # actions
 get '/' do
   puts('hit fontpage')
@@ -130,27 +139,26 @@ get '/' do
   end
 end
 
+get '/footer' do
+  erb :footer, :layout => false
+end
+
 get '/logout' do
   session["id"] = nil
-  redirect '/'
+  if request.xhr?
+    erb :index, :layout => false
+  else
+    redirect '/'
+  end
 end
 
 get '/home' do
   if session["id"]
     @account = Account.get(session["id"])
-    if account_complete?(@account)
-      @navigate = true
-      @start_date = if params[:previous]
-                      Chronic.parse('yesterday', :now => Chronic.parse(params[:previous]))
-                    elsif params[:next]
-                      Chronic.parse('tomorrow', :now => Chronic.parse(params[:next]))
-                    else
-                      Time.now
-                    end
-      @end_date = Chronic.parse('7 days ago', :now => @start_date)
-      get_account_data(@account, @start_date, @end_date)
-      output = erb :home
+    if @account && account_complete?(@account)
+      render_home
     else
+      session["id"] = nil
       redirect '/account'
     end
   else
@@ -161,17 +169,16 @@ end
 get '/account' do
   if session["id"]
     @account = Account.get(session["id"])
-    output = erb :account
+    erb :account, :layout => !request.xhr?
   else
-    output = erb :account_login
+    erb :account_login, :layout => !request.xhr?
   end
-  output
 end
 
 get '/get_widget' do
   if session["id"]
     @account = Account.get(session["id"])
-    erb :get_widget
+    erb :get_widget, :layout => !request.xhr?
   else
     redirect '/account'
   end
@@ -186,6 +193,8 @@ post '/account/edit' do
 end
 
 post '/account/login' do
+  puts "non widget login"
+  redirect '/account' && return unless params['email'] && params['password']
   identifier = (params['email']+"fitbit"+params['password']).hash
   account = Account.get(identifier) 
   account ||= Account.new(:id => identifier)
@@ -194,9 +203,19 @@ post '/account/login' do
   account.fitbit_pass = params['password']
   account.save!
   if account_complete?(account)
-    redirect '/home'
+    if request.xhr?
+      @account = account
+      render_home
+    else
+      redirect '/home'
+    end
   else
-    redirect '/account'
+    session["id"] = nil
+    if request.xhr?
+      erb :account_login, :layout => false
+    else
+      redirect '/account'
+    end
   end
 end
 
