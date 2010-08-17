@@ -8,7 +8,6 @@ require 'net/https'
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
-require 'do_postgres'
 require 'ostruct'  
 require 'erb'
 require 'chronic'
@@ -34,6 +33,7 @@ class Account
 end
 
 configure :production do
+  require 'do_postgres'
   CALLBACK_URI_PREFIX = "https://"
   DataMapper::setup(:default, ENV['DATABASE_URL'])
   #DataMapper.auto_migrate!
@@ -64,6 +64,22 @@ use Rack::Session::Cookie, :key => 'fitbit.session',
 def open_id_auth_uri
   encoded_callback_uri = URI.escape("#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/id_callback")
   "#{CALLBACK_URI_PREFIX}fitbit-widget.rpxnow.com/openid/embed?token_url=#{encoded_callback_uri}"
+end
+
+def get_local_resource(url)
+  if @root_url
+    url.gsub(/^\//,'')
+  else
+    url
+  end
+end
+
+def get_url(url)
+  if @root_url
+    "#{@root_url}#{url}"
+  else
+    url
+  end
 end
 
 def account_complete?(account)
@@ -137,6 +153,14 @@ get '/' do
   else
     erb :index, :layout => !request.xhr?
   end
+end
+
+get '/write_index' do
+  @root_url = "https://fitbit-widget.heroku.com"
+  content = erb :index
+  local_filename = 'tmp/index.html'
+  File.open(local_filename, 'w') {|f| f.write(content) }
+  "wrote index"
 end
 
 get '/footer' do

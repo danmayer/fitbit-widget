@@ -3,7 +3,7 @@ require 'fileutils'
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
-require 'do_postgres'
+#require 'do_postgres'
 
 task :default => ['test']
 
@@ -69,12 +69,17 @@ namespace :test do
   end
 end
 
-desc "render github index page, which can be displayed at user.github.com"
-task :render_for_github do	
-    require File.join(File.dirname(__FILE__), 'lib', 'resume_gem')
-    resume = Resume.new('data/resume.yml')
-    resume.write_html_and_css_to_disk('./')
-end
+# hard to interact iwth sinatra straigh from rake, or at least I can't seem to find how.
+# desc "render phonegap index page"
+# task :render_for_phonegap do
+#   require File.join(File.dirname(__FILE__), 'fitbit-widget.rb')
+#   require 'erb'
+
+#   template = ERB.new('views/index.erb')
+#   content = erb :index
+#   local_filename tmp/index.html
+#   File.open(local_filename, 'w') {|f| f.write(content) }
+# end
 
 namespace :heroku do
 

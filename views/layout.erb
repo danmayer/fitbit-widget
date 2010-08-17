@@ -1,115 +1,24 @@
 <html>
 <head>
-<script type="text/javascript" charset="utf-8" src="/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/jquery.sparkline.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/jquery.offline.js"></script>
-<script type="text/javascript" charset="utf-8" src="/json.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/jquery-1.4.2.min.js') %>"></script>
+<script type="text/javascript" charset="utf-8"
+src="<%= get_local_resource('/jquery.sparkline.min.js') %>"></script>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/jquery.offline.js') %>"></script>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/json.js') %>"></script>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/fitbit-mini.js') %>"></script>
 
-    <script type="text/javascript">
-    function init(){
-      //add this in your javascript code to 'hide' the address bar  
-      window.scrollTo(0, 1);
-    }
-
-    var sparklines = function() {
-        /** This code runs when everything has been loaded on the page */
-        /* Inline sparklines take their values from the contents of the tag */
-        $('.inlinesparkline').sparkline(); 
-
-        /* Use 'html' instead of an array of values to pass options 
-        to a sparkline with data in the tag */
-        $('.inlinebar').sparkline('html', {type: 'bar', barColor: '#81F7F3'} );
-    }
-
-    var hideLoading = function() {
-      $("#loading").hide();
-    }
-
-    var accountGet = function(callback) {
-    $.retrieveGet("/account", function(content, status) {
-      $("#content").empty().append(content);
-      hideLoading();
-    });
-    return false;
-    };
-
-    var widgetGet = function(callback) {
-    $.retrieveGet("/get_widget", function(content, status) {
-      $("#content").empty().append(content);
-      hideLoading();
-    });
-    return false;
-    };
-
-    var logoutGet = function(callback) {
-    $.get("/logout", function(content, status) {
-      $("#content").empty().append(content);
-      reloadFooter();
-      hideLoading();
-    });
-    return false;
-    };
-
-   var reloadFooter = function(callback) {
-    $.retrieveGet("/footer", function(content, status) {
-      $("#footer").empty().append(content);
-      hideLoading();
-    });
-    return false;
-    };
-
-    var loginFormSubmit = function() {
-      var email = $("input#email").val();
-      var pass = $("input#password").val();
-      var dataString = 'password='+ pass + '&email=' + email;
-      $.ajax({  
-       type: "POST",  
-       url: "/account/login",  
-       data: dataString,  
-       success: function(content) {  
-         $("#content").empty().append(content);
-         sparklines();
-         reloadFooter();
-         hideLoading();
-       }  
-      });  
-    return false;
-    };
-
-    var getHome = function(url) {
-    $.retrieveGet(url, function(content, status) {
-      $("#loading").show();
-      $("#content").empty().hide();
-      $("#content").append(content);
-      hideLoading();
-      $("#content").show();
-      sparklines();
-    });
-    return false;
-    };
-
-    jQuery(document).ready(function($) {
-    sparklines();
-
-    // Since jQuery.retrieveJSON delegates to jQuery's Ajax
-    // to make requests, we can just set up normal jQuery
-    // Ajax listeners.
-    //$("#loading").ajaxStart(function() { $(this).show(); });
-    //$("#loading").ajaxStop(function() {  $(this).hide(); });
-
-    //immediately check to see if they should have thier account page or home page
-    //setFrontPageContent();
-});
-
-    </script>
-
-<link rel='stylesheet' href='/base.css' type='text/css' media="screen,projection">
+<link rel="stylesheet" href="<%= get_local_resource('/base.css') %>" type="text/css" media="screen,projection">
 <meta name = "viewport" content = "width = device-width">
 <link rel="apple-touch-icon" href="/icon.png">
 </head>
 
 <body onload="init();">
-<div id="loading" style="display:none"><img src="/loading.gif" alt="loading..." width='50%'/></div>
+<div id="loading" style="display:none"><img src="<%=
+get_local_resource('/loading.gif') %>" alt="loading..." width='50%'/></div>
 <div class="iphone-scrollcontainer">
    <ul class="iphone-scroll">
       <li>
