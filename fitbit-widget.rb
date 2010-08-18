@@ -45,7 +45,19 @@ end
 
 configure :development do
   CALLBACK_URI_PREFIX = "http://"
-  DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/fitbit.db")
+  begin
+    require 'sqlite3'
+    DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/fitbit.db")
+  rescue LoadError
+    require 'do_mysql'
+    DataMapper::setup(:default, {
+                                 :adapter  => 'mysql',
+                                 :host     => 'localhost',
+                                 :username => 'root',
+                                 :password => '',
+                                 :database => 'fitbit_widget_development'
+                               })
+  end
   # DataMapper.auto_migrate!
   DataMapper.auto_upgrade!
   #require 'rack/perftools_profiler'
