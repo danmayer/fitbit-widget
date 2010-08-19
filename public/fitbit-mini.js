@@ -83,16 +83,6 @@
     };
 
     jQuery(document).ready(function($) {
-
-	//a hack to force xhr request header, 
-	//with out this it works in site, but fails on local files (ie phonegap)
-	jQuery.ajaxSetup({
-	  beforeSend: function(xhr) {
-	      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	    }
-	  });
-	sparklines();
-
 	// Since jQuery.retrieveJSON delegates to jQuery's Ajax
 	// to make requests, we can just set up normal jQuery
 	// Ajax listeners.

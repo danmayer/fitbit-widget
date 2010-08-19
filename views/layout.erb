@@ -11,6 +11,23 @@ get_local_resource('/json.js') %>"></script>
 <script type="text/javascript" charset="utf-8" src="<%=
 get_local_resource('/fitbit-mini.js') %>"></script>
 
+<% if @root_url %>
+
+<script type="text/javascript" charset="utf-8">
+    jQuery(document).ready(function($) {
+
+	//a hack to force xhr request header, 
+	//with out this it works in site, but fails on local files (ie phonegap)
+	jQuery.ajaxSetup({
+	  beforeSend: function(xhr) {
+	//      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	    }
+	  });
+    }
+</script>
+
+<% end %>
+
 <link rel="stylesheet" href="<%= get_local_resource('/base.css') %>" type="text/css" media="screen,projection">
 <meta name = "viewport" content = "width = device-width">
 <link rel="apple-touch-icon" href="/icon.png">
