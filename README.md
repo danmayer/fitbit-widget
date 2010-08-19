@@ -7,5 +7,9 @@ Also a example of how to build mobile sites and apps.
 ## Author
 * Dan Mayer (danmayer)
 
+__TODO__
 
+* if you log in with a non existant fitbit email/pass it just crashes
+* some bug displays unformatted text before displaying formatted html on ajax actions
+* work on caching all the files/CSS/images
 
