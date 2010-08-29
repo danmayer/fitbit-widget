@@ -2,7 +2,7 @@
 // This file has the website version of the methods
 
 var getURL = function(path) { 
-  path
+  return path;
 };
 
 var logoutGet = function(callback) {
