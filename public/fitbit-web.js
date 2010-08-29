@@ -6,7 +6,7 @@ var getURL = function(path) {
 };
 
 var logoutGet = function(callback) {
-  $.get(url_base+"/logout", function(content, status) {
+  $.get("/logout", function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
     });
@@ -19,7 +19,7 @@ var loginFormSubmit = function() {
   var dataString = 'password='+ pass + '&email=' + email;
   $.ajax({  
     type: "POST",  
-	url: url_base+"/account/login",  
+	url: "/account/login",  
 	data: dataString,  
 	success: function(content) {  
 	$("#content").empty().append(content);
