@@ -8,7 +8,7 @@
 <% unless @hide_example %>
   <li>
   Example widget/mobile view:<br/>
-  <iframe height="350px" frameborder="1" width="90%" scrolling="no" src="<%="https://#{request.env['HTTP_HOST']}/widget/example" %>" name="fitbit"></iframe>
+  <iframe height="350px" frameborder="1" width="90%" scrolling="no" src="<%="#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/widget/example" %>" name="fitbit"></iframe>
   <br/>
   <br/>
   </li>
