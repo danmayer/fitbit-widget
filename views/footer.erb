@@ -1,15 +1,15 @@
-<!-- needs to check if account valid not just session id --!>
+<!-- needs to check if account valid not just account --!>
 <li class='footer'>
-<% if session["id"] %> 
+<% if @account %> 
 <a href="/home" onclick="return getHome('/home')">home</a>
 <% else %>
 <a href="/" onclick="return getHome('/')">home</a>
 <% end %>
-<% if session["id"] %> 
+<% if @account %> 
 - <a href='/get_widget' onclick="return widgetGet();">get widget</a>
 <% end %>
 </li>
-<% if session["id"] %>
+<% if @account %>
 <li class='footer'>
 <a href='/account' onclick="return accountGet();">account</a> - <a href='/logout' onclick="return logoutGet();">logout</a>
 </li>

@@ -12,6 +12,7 @@ require 'ostruct'
 require 'erb'
 require 'chronic'
 require 'logger'
+require 'fileutils'
 
 class Account
   include DataMapper::Resource
@@ -154,7 +155,23 @@ def render_home
                 end
   @end_date = Chronic.parse('7 days ago', :now => @start_date)
   get_account_data(@account, @start_date, @end_date)
-  erb :home, :layout => !request.xhr?
+  erb :home, :layout => (request.xhr? ? :partial_layout : :layout)
+end
+
+before do
+  #set account if it can
+  identifier = if(params['email'] && params['password'] && params['email']!='' && params['password']!='')
+                 (params['email']+"fitbit"+params['password']).hash
+               elsif session["id"]
+                 session["id"]
+               end
+  @account = Account.get(identifier) 
+  if @account==nil && (params['email'] && params['password']) && params['email']!='' && params['password']!=''
+    @account = Account.new(:id => identifier)
+    @account.fitbit_email = params['email']
+    @account.fitbit_pass = params['password']
+    @account.save!
+  end
 end
 
 # actions
@@ -163,16 +180,25 @@ get '/' do
   if session["id"]
     redirect '/home'
   else
-    erb :index, :layout => !request.xhr?
+    erb :index, :layout => (request.xhr? ? :partial_layout : :layout)
   end
 end
 
 get '/write_index' do
+  @hide_example = true
   @root_url = "https://fitbit-widget.heroku.com"
   content = erb :index
-  local_filename = 'tmp/index.html'
+  local_filename = 'phonegap/index.html'
   File.open(local_filename, 'w') {|f| f.write(content) }
-  "wrote index"
+
+  FileUtils.cp_r 'public/.', 'phonegap'
+
+  # alter the CSS as needed
+  css_file = "phonegap/base.css"
+  content = File.read(css_file)
+  content = content.gsub(/url\(\//,'url(')
+  File.open(css_file, 'w') {|f| f.write(content) }
+  "wrote index, and copied assests to phonegap"
 end
 
 get '/footer' do
@@ -182,54 +208,44 @@ end
 get '/logout' do
   session["id"] = nil
   if request.xhr?
-    erb :index, :layout => false
+    erb :index, :layout => :partial_layout
   else
     redirect '/'
   end
 end
 
 get '/home' do
-  if session["id"]
-    @account = Account.get(session["id"])
-    if @account && account_complete?(@account)
-      render_home
-    else
-      session["id"] = nil
-      redirect '/account'
-    end
+  if @account && account_complete?(@account)
+    render_home
   else
     redirect '/account'
   end
 end
 
 get '/account' do
-  if session["id"]
-    @account = Account.get(session["id"])
-    erb :account, :layout => !request.xhr?
+  if @account
+    erb :account, :layout => (request.xhr? ? :partial_layout : :layout)
   else
-    erb :account_login, :layout => !request.xhr?
+    erb :account_login, :layout => (request.xhr? ? :partial_layout : :layout)
   end
 end
 
 get '/get_widget' do
-  if session["id"]
-    @account = Account.get(session["id"])
-    erb :get_widget, :layout => !request.xhr?
+  if @account
+    erb :get_widget, :layout => (request.xhr? ? :partial_layout : :layout)
   else
     redirect '/account'
   end
 end
 
 post '/account/edit' do
-  account = Account.get(session["id"])
-  account.fitbit_email = params['email']
-  account.fitbit_pass = params['password']
-  account.save!
+  @account.fitbit_email = params['email']
+  @account.fitbit_pass = params['password']
+  @account.save!
   redirect '/account'
 end
 
 post '/account/login' do
-  puts "non widget login"
   redirect '/account' && return unless params['email'] && params['password']
   identifier = (params['email']+"fitbit"+params['password']).hash
   account = Account.get(identifier) 
@@ -248,7 +264,7 @@ post '/account/login' do
   else
     session["id"] = nil
     if request.xhr?
-      erb :account_login, :layout => false
+      erb :account_login, :layout => :partial_layout
     else
       redirect '/account'
     end
@@ -309,18 +325,14 @@ end
 
 # the below methods are just a feature Idea I am testing, not in prod
 get '/backup' do
-  account = Account.get(session["id"])
   erb :backup
 end
 
 get '/backup_simple' do
-  account = Account.get(session["id"])
   output = erb :backup_simple
 end
 
 get '/backup_data' do
-  account = Account.get(session["id"])
-
   start_date = Chronic.parse('1 day ago')
   end_date = Chronic.parse('8 days ago')
 
@@ -336,8 +348,6 @@ EOF
 end
 
 get '/backup_data.json' do
-  account = Account.get(session["id"])
-
   start_date = Chronic.parse('1 day ago')
   end_date = Chronic.parse('8 days ago')
 

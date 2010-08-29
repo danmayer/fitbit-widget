@@ -12,20 +12,13 @@ get_local_resource('/json.js') %>"></script>
 get_local_resource('/fitbit-mini.js') %>"></script>
 
 <% if @root_url %>
-
-<script type="text/javascript" charset="utf-8">
-    jQuery(document).ready(function($) {
-
-	//a hack to force xhr request header, 
-	//with out this it works in site, but fails on local files (ie phonegap)
-	jQuery.ajaxSetup({
-	  beforeSend: function(xhr) {
-	//      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	    }
-	  });
-    }
-</script>
-
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/jquery.cookie.js') %>"></script>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/fitbit-app.js') %>"></script>
+<% else %>
+<script type="text/javascript" charset="utf-8" src="<%=
+get_local_resource('/fitbit-web.js') %>"></script>
 <% end %>
 
 <link rel="stylesheet" href="<%= get_local_resource('/base.css') %>" type="text/css" media="screen,projection">
@@ -45,13 +38,13 @@ get_local_resource('/loading.gif') %>" alt="loading..." width='50%'/></div>
         </div>
 <div id="content">
 <%= yield %>
-</div>
 
 <ul class="iphone-scroll">
 <div id='footer'>
 <%=erb :footer, :layout => false %>
 </div>
 </ul>
+</div>
 </div>
 
 </body>
