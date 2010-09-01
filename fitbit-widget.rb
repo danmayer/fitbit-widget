@@ -113,6 +113,7 @@ def get_account_data(account, start_date = nil, end_date = nil)
   end_date ||= Chronic.parse('8 days ago')
 
   #TODO move to cache method
+  FileUtils.mkdir('tmp/') unless File.exists?('tmp/')
   cache_path = "tmp/#{account.fitbit_email}-#{format_date(start_date)}.json"
   data = if File.exists?(cache_path)
            JSON.parse(File.read(cache_path))

@@ -23,7 +23,6 @@ __TODO__
 * some bug displays unformatted text before displaying formatted html on ajax actions (bug in my jquery-offline branch I think)
 * work on caching all the files/CSS/images
 * Spinner to display that things are loading between page loads
-* make tmp dir if doesn't exist
 * make it easier to get up and running (rake gems install? )
 * factor out various environment dependant stuff.
 * log currently logs password, apply a filter to the log to not record passwords.
