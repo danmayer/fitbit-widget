@@ -27,14 +27,15 @@ get_local_resource('/fitbit-web.js') %>"></script>
 </head>
 
 <body onload="init();">
-<div id="loading" style="display:none"><img src="<%=
-get_local_resource('/loading.gif') %>" alt="loading..." width='50%'/></div>
 <div class="iphone-scrollcontainer">
    <ul class="iphone-scroll">
       <li>
         <div class="nav-indicator-fixed"></div>
         <div class="nav-indicator">
-        Fitbit Mini
+	  Fitbit Mini
+	  <span id="loading" style="display:none">
+	  <img src="<%=get_local_resource('/spinner.gif') %>"
+	  alt="loading..." /></span>
         </div>
 <div id="content">
 <%= yield %>

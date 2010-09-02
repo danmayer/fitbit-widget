@@ -50,8 +50,8 @@ jQuery(document).ready(function($) {
     // Since jQuery.retrieveJSON delegates to jQuery's Ajax
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
-    //$("#loading").ajaxStart(function() { $(this).show(); });
-    //$("#loading").ajaxStop(function() {  $(this).hide(); });
+    $("#loading").ajaxStart(function() { $(this).show(); });
+    $("#loading").ajaxStop(function() {  $(this).hide(); });
     
     //immediately check to see if they should have thier account page or home page
     //setFrontPageContent();
