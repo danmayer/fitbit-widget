@@ -1,3 +1,4 @@
+var actions = new Array();
 
 function init(){
   //add this in your javascript code to 'hide' the address bar  
@@ -18,7 +19,8 @@ var hideLoading = function() {
   $("#loading").hide();
 };
 
-var accountGet = function(callback) {
+var accountGet = function() {
+  actions.push([accountGet, null]);
   $.retrieveGet(getURL("/account"), function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
@@ -26,7 +28,8 @@ var accountGet = function(callback) {
   return false;
 };
 
-var widgetGet = function(callback) {
+var widgetGet = function() {
+  actions.push([widgetGet, null]);
   $.retrieveGet(getURL("/get_widget"), function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
@@ -35,6 +38,7 @@ var widgetGet = function(callback) {
 };
 
 var getHome = function(url) {
+  actions.push([getHome, url]);
   $.retrieveGet(getURL(url), function(content, status) {
       $("#loading").show();
       $("#content").empty().hide();

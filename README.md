@@ -27,3 +27,4 @@ __TODO__
 * factor out various environment dependant stuff.
 * log currently logs password, apply a filter to the log to not record passwords.
 * add the Android project to the git repo.
+* support offline online mode on phonegap

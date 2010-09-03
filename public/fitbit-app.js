@@ -15,7 +15,8 @@ var getURL = function(path) {
   return result;
 };
 
-var logoutGet = function(callback) {
+var logoutGet = function() {
+  actions = [];
   $.cookie("user", '');
   $.cookie("pass", '');
   user = "";
@@ -28,6 +29,7 @@ var logoutGet = function(callback) {
 };
 
 var loginFormSubmit = function() {
+  actions.push([getHome, url]);
   user = $("input#email").val();
   pass = $("input#password").val();
   var dataString = 'password='+ pass + '&email=' + user;
@@ -66,3 +68,24 @@ jQuery(document).ready(function($) {
     sparklines();
     
   });
+
+//Phonegap specific init
+document.addEventListener("deviceready", function(){ 
+    device.overrideBackButton(); 
+    document.addEventListener("backKeyDown", function(){ 
+	if (actions.length>1) {
+	  current = actions.pop();
+	  recent = actions.pop();
+	  method = recent[0];
+	  args = recent[1];
+	  method(args);
+	} else {
+	  alert("No history of actions exists yet, sorry.");
+	}
+      }, false); 
+
+    document.addEventListener("menuKeyDown", function(){ 
+	alert("There really is no need for a menu in this app.\n So Fitbit mini was created by Dan Mayer cause he loves his fitbit.");
+      }, false); 
+
+  }, false); 

@@ -1,15 +1,15 @@
 <!-- needs to check if account valid not just account --!>
 <li class='footer'>
-<% if @account %> 
+<% if @account && !@root_url %> 
 <a href="/home" onclick="return getHome('/home')">home</a>
 <% else %>
 <a href="/" onclick="return getHome('/')">home</a>
 <% end %>
-<% if @account %> 
+<% if @account && !@root_url %> 
 - <a href='/get_widget' onclick="return widgetGet();">get widget</a>
 <% end %>
 </li>
-<% if @account %>
+<% if @account && !@root_url %>
 <li class='footer'>
 <a href='/account' onclick="return accountGet();">account</a> - <a href='/logout' onclick="return logoutGet();">logout</a>
 </li>
