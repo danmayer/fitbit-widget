@@ -189,13 +189,13 @@ get '/write_index' do
   @hide_example = true
   @root_url = "https://fitbit-widget.heroku.com"
   content = erb :index
-  local_filename = 'phonegap/index.html'
+  local_filename = 'phonegap-android/assets/www/index.html'
   File.open(local_filename, 'w') {|f| f.write(content) }
 
-  FileUtils.cp_r 'public/.', 'phonegap'
+  FileUtils.cp_r 'public/.', 'phonegap-android/assets/www'
 
   # alter the CSS as needed
-  css_file = "phonegap/base.css"
+  css_file = "phonegap-android/assets/www/base.css"
   content = File.read(css_file)
   content = content.gsub(/url\(\//,'url(')
   File.open(css_file, 'w') {|f| f.write(content) }

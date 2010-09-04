@@ -1,0 +1,69 @@
+<html>
+<head>
+<script type="text/javascript" charset="utf-8" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+src="jquery.sparkline.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery.offline.js"></script>
+<script type="text/javascript" charset="utf-8" src="json.js"></script>
+<script type="text/javascript" charset="utf-8" src="fitbit-mini.js"></script>
+
+
+<script type="text/javascript" charset="utf-8" src="jquery.cookie.js"></script>
+<script type="text/javascript" charset="utf-8" src="fitbit-app.js"></script>
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<!-- -->
+
+
+<link rel="stylesheet" href="base.css" type="text/css" media="screen,projection">
+<meta name = "viewport" content = "width = device-width">
+<link rel="apple-touch-icon" href="/icon.png">
+</head>
+
+<body onload="init();">
+<div class="iphone-scrollcontainer">
+   <ul class="iphone-scroll">
+      <li>
+        <div class="nav-indicator-fixed"></div>
+        <div class="nav-indicator">
+	  Fitbit Mini
+	  <span id="loading" style="display:none">
+	  <img src="spinner.gif"
+	  alt="loading..." /></span>
+        </div>
+<div id="content">
+  <ul>
+  <li class="nohover">
+          <a href="https://fitbit-widget.heroku.com/">Fitbit mini</a> is a simple way to view fitbit data. Embed it in a blog, or for mobile friendly viewing. Fitbit mini, isn't assocaited with <a href="http://fitbit.com">Fitbit</a> in any way, just a fan.
+        </li> 
+  <li><a href="/account" onClick="return accountGet();">Create Account or Login</a></li>
+  </ul>
+
+
+
+  <li>
+  <a href="http://github.com/danmayer/fitbit-widget">Fitbit mini is open source</a>
+  <br/>
+  </li>
+
+
+<ul class="iphone-scroll">
+<div id='footer'>
+<!-- needs to check if account valid not just account --!>
+<li class='footer'>
+
+<a href="/" onclick="return getHome('/')">home</a>
+
+
+</li>
+
+<li class='footer'>
+Data Powered by <a href="http://fitbit.com" target="_parent">Fitbit</a>
+</li>
+
+</div>
+</ul>
+</div>
+</div>
+
+</body>
+</html>
