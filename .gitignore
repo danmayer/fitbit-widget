@@ -6,3 +6,4 @@ pkg
 *.gemspec
 db/**
 *_complexity.erb
+phonegap-android/bin/

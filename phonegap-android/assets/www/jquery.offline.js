@@ -229,7 +229,7 @@
       // otherwise, make it the most recent callback so it will
       // get triggered when the user comes online
       if (window.navigator.onLine) {
-        getData(url, data);
+        getData();
       } else {
         mostRecent = getData;
       }
@@ -260,7 +260,7 @@
           dateString  = localStorage[key + ":date"],
           date        = new Date(Date.parse(dateString));
 
-      handleStorage = function(json, status) {
+      handleStorage = function(content, status) {
 	if ( status == 'notmodified' ) {
 	  // Just return if the response has a 304 status code
 	  return false;
@@ -268,7 +268,7 @@
 	
 	while (true) {
 	  try {
-	    localStorage[key] = JSON.stringify(json);
+	    localStorage[key] = content;
 	    localStorage[key + ":date"] = new Date;
 	    break;
 	  } catch (e) {
@@ -286,7 +286,7 @@
 	// users of jQuery Offline can provide the user
 	// with improved feedback if the lag is large
 	var data = text && { cachedAt: date, retrievedAt: retrieveDate };
-	fn(json, status, data);
+	fn(content, status, data);
       }
 
       // create a function that will make an Ajax request and
@@ -299,7 +299,6 @@
       // If there is anything in the cache, call the callback
       // right away, with the "cached" status string
       if( text ) {
-        //get rid of parseJSON
         var response = fn( text, "cached", { cachedAt: date } );
         if( response === false ) return false;
       }
