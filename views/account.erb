@@ -1,18 +1,24 @@
 	<li>
-To use this service, your fitbit email and password are required.
-(to get your data from the fitbit API)
+          To use this service, your fitbit email and password are required.
+          (to get your data from the fitbit API)
 	</li>
 	<li>
     <form action='/account/edit' method='post'>
     Email:
 	<input type='text' name='email' placeholder='<%= @account.fitbit_email %>' />
-	</li>
+          </li>
 	<li>
     Password:
 	<input type='password' name='password' placeholder='<%=
 	@account.fitbit_pass.gsub(/./,'*') if @account.fitbit_pass %>' />
-	</li>
+          </li>
 	<li>
     <input type='submit' name='save' value='save' />
-    </form>
+          </form>
 	  </li>
+          <li>
+          &nbsp;
+          </li>
+          <li>
+          <strong>Note:</strong> Since the user/password is used to scrape from fitbit it has to be stored in clear text in the DB. Currently there isn't another/better way to access fitbit data. I will not share,view,use,abuse the account data in any way. No copies of logs or DBs from this app are stored.
+          </li>

@@ -20,11 +20,13 @@ __GETTING STARTED__
 __TODO__
 
 * if you log in with a non existant fitbit email/pass it just crashes
-* some bug displays unformatted text before displaying formatted html on ajax actions (bug in my jquery-offline branch I think)
+* no web connection crashes on SocketError which should probably be fixed in ruby-fitbit lib
 * work on caching all the files/CSS/images
-* Spinner to display that things are loading between page loads
 * make it easier to get up and running (rake gems install? )
-* factor out various environment dependant stuff.
+* factor out various environment dependant stuff. (just use the configure :development etc for environments)
 * log currently logs password, apply a filter to the log to not record passwords.
-* add the Android project to the git repo.
-* support offline online mode on phonegap
+* support offline online mode on phonegap (currently sort of does with jquery-offline, but doesn't worn on older androids)
+* Use progressive updating via jquery opposed to the hardcoded onclick function calls.
+*move sinatra simple account to gem and provide plugin mechanism.
+  * ie use SinatraSimpleAccount :success => x, :protocall => {} , etc
+  * clean up and make all the above options setable

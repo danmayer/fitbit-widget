@@ -11,7 +11,7 @@ get_local_resource('/json.js') %>"></script>
 <script type="text/javascript" charset="utf-8" src="<%=
 get_local_resource('/fitbit-mini.js') %>"></script>
 
-<% if @root_url %>
+<% if is_app? %>
 <script type="text/javascript" charset="utf-8" src="<%=
 get_local_resource('/jquery.cookie.js') %>"></script>
 <script type="text/javascript" charset="utf-8" src="<%=
