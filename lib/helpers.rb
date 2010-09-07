@@ -15,7 +15,7 @@ def get_url(url)
 end
 
 def is_app?
-  @root_url.nil?
+  !@root_url.nil?
 end
 
 
