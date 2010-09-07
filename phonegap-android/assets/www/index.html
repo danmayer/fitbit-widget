@@ -8,7 +8,10 @@ src="jquery.sparkline.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="fitbit-mini.js"></script>
 
 
-<script type="text/javascript" charset="utf-8" src="fitbit-web.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery.cookie.js"></script>
+<script type="text/javascript" charset="utf-8" src="fitbit-app.js"></script>
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<!-- -->
 
 
 <link rel="stylesheet" href="base.css" type="text/css" media="screen,projection">
@@ -47,16 +50,10 @@ src="jquery.sparkline.min.js"></script>
 <div id='footer'>
 <!-- needs to check if account valid not just account --!>
 <li class='footer'>
- 
-<a href="/home" onclick="return getHome('/home')">home</a>
 
- 
-- <a href='/get_widget' onclick="return widgetGet();">get widget</a>
+<a href="/" onclick="return getHome('/')">home</a>
 
-</li>
 
-<li class='footer'>
-<a href='/account' onclick="return accountGet();">account</a> - <a href='/logout' onclick="return logoutGet();">logout</a>
 </li>
 
 <li class='footer'>

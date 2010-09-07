@@ -7,10 +7,14 @@ var pass = "";
 
 var getURL = function(path) { 
   result = false
-  if (path.indexOf('?')>0) {
-    result = url_base+path+"&email="+user+"&password="+pass  
+  if(user!="" && user!=null) {
+    if (path.indexOf('?')>0) {
+      result = url_base+path+"&email="+user+"&password="+pass;
+    } else {
+      result = url_base+path+"?email="+user+"&password="+pass;
+    }
   } else {
-    result = url_base+path+"?email="+user+"&password="+pass
+    result = url_base+path;
   }
   return result;
 };
@@ -29,7 +33,7 @@ var logoutGet = function() {
 };
 
 var loginFormSubmit = function() {
-  actions.push([getHome, url]);
+  actions.push([getHome, null]);
   user = $("input#email").val();
   pass = $("input#password").val();
   var dataString = 'password='+ pass + '&email=' + user;
