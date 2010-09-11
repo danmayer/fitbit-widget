@@ -15,7 +15,7 @@ def get_url(url)
 end
 
 def is_app?
-  !@root_url.nil? || params[:app]=='true'
+  !@root_url.nil?
 end
 
 
