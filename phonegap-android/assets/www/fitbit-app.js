@@ -1,7 +1,8 @@
 // Some methods are slightly different for apps vs the website.
 // This file has the app version of the methods
 
-var url_base = "http://danmayer.dnsalias.com:4567";
+//var url_base = "http://danmayer.dnsalias.com:4567";
+var url_base = "https://fitbit-widget-staging.heroku.com";
 var user = "";
 var pass = "";
 
@@ -9,9 +10,9 @@ var getURL = function(path) {
   result = false
   if(user!="" && user!=null) {
     if (path.indexOf('?')>0) {
-      result = url_base+path+"&email="+user+"&password="+pass;
+      result = url_base+path+"&email="+user+"&password="+pass+"&app=true";
     } else {
-      result = url_base+path+"?email="+user+"&password="+pass;
+      result = url_base+path+"?email="+user+"&password="+pass+"&app=true";
     }
   } else {
     result = url_base+path;
