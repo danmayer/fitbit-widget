@@ -27,10 +27,10 @@ __TODO__
 * log currently logs password, apply a filter to the log to not record passwords.
 * support offline online mode on phonegap (currently sort of does with jquery-offline, but doesn't worn on older androids)
 * Use progressive updating via jquery opposed to the hardcoded onclick function calls.
-*move sinatra simple account to gem and provide plugin mechanism.
+* move sinatra simple account to gem and provide plugin mechanism.
   * ie use SinatraSimpleAccount :success => x, :protocall => {} , etc
   * clean up and make all the above options setable
-* icon to small
 * back button should quit if there are no more back actions
 * menu with actual quit option (close option)
 * chris hates my fonts bug my design buddy for better design.
+* larger clickable links in the UI
