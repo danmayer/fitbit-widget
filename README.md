@@ -30,7 +30,6 @@ __TODO__
 * move sinatra simple account to gem and provide plugin mechanism.
   * ie use SinatraSimpleAccount :success => x, :protocall => {} , etc
   * clean up and make all the above options setable
-* back button should quit if there are no more back actions
 * menu with actual quit option (close option)
 * chris hates my fonts bug my design buddy for better design.
 * larger clickable links in the UI
