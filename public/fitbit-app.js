@@ -86,7 +86,8 @@ document.addEventListener("deviceready", function(){
 	  args = recent[1];
 	  method(args);
 	} else {
-	  alert("No history of actions exists yet, sorry.");
+	  BackButton.reset();
+	  BackButton.exitApp();
 	}
       }, false); 
 

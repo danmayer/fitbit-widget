@@ -539,7 +539,6 @@ Device.prototype.overrideBackButton = function()
 Device.prototype.resetBackButton = function()
 {
   BackButton.reset();
-  BackButton.exitApp();
 }
 
 /*
