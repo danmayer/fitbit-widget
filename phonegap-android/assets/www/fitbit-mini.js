@@ -39,7 +39,9 @@ var widgetGet = function() {
 
 var getHome = function(url) {
   actions.push([getHome, url]);
-  $.retrieveGet(getURL(url), function(content, status) {
+  console.log("calling home: "+getURL(url));
+  $.retrieveGet(getURL(url), function(content) {
+      console.log("got home");
       $("#loading").show();
       $("#content").empty().hide();
       $("#content").append(content);
