@@ -35,6 +35,10 @@ html, body {
  position:fixed;
  /*width:320px;*/ }
 
+.error-msg {
+ color: red;
+}
+
 li.footer { color:#FFFFFF; background-image:url(/hover.png); background-repeat:repeat-x; line-height:30px;}
 li.footer a { color:#81F7F3 }
 

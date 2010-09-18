@@ -1,3 +1,6 @@
+<% if @error_msg %>
+<li><span class="error-msg"><%= @error_msg %></span></li>
+<% else %>
       <li>
         <div class="nav-indicator-fixed"></div>
         <div class="nav-indicator">
@@ -80,3 +83,4 @@ Activity Durations
 <li>Very <%= @recent_data['very_active'] %></li>
 </ul>
 </li>
+<% end %>

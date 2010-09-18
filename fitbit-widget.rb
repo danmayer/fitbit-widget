@@ -108,13 +108,12 @@ get %r{^/widget/(.*)} do |id|
   #default to the example account (mine, to show an example)
   account ||= OpenStruct.new(:fitbit_email => ENV['fitbit_email'], :fitbit_pass => ENV['fitbit_pass'])
 
-  begin
-    get_account_data(account)
+  get_account_data(account)
 
-    erb :widget, :layout => false
-  rescue NoMethodError, SocketError => error
-    puts error
+  if @error_msg
     'Fitbit account information not correct or temporary account retreival error.'
+  else
+    erb :widget, :layout => false
   end
 end
 

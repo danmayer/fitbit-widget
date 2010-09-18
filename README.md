@@ -18,9 +18,6 @@ __GETTING STARTED__
 * Dan Mayer (danmayer)
 
 __TODO__
-
-* if you log in with a non existant fitbit email/pass it just crashes
-* no web connection crashes on SocketError which should probably be fixed in ruby-fitbit lib
 * work on caching all the files/CSS/images
 * make it easier to get up and running (rake gems install? )
 * factor out various environment dependant stuff. (just use the configure :development etc for environments)
