@@ -33,6 +33,7 @@ public class FitbitMini extends DroidGap {
 			case STOPSPLASH:
 				// remove SplashScreen from view
 				setContentView(root);
+				appView.requestFocus();
 				break;
 			}
 			super.handleMessage(msg);

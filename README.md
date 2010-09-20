@@ -30,4 +30,4 @@ __TODO__
 * menu with actual quit option (close option)
 * chris hates my fonts bug my design buddy for better design.
 * larger clickable links in the UI
-* add splash screen / example how to do it with phonegap.
+* Make home example widget and the RPX conditional to appear on site but not to the App.
