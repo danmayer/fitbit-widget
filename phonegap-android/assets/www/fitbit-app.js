@@ -3,7 +3,7 @@
 
 //var url_base = "http://danmayer.dnsalias.com:4567";
 //var url_base = "https://fitbit-widget-staging.heroku.com";
-var url_base = "https://fitbit-widget.heroku.com";
+var url_base = "http://fitbit-widget.heroku.com";
 var user = "";
 var pass = "";
 

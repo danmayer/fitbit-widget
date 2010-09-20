@@ -24,8 +24,8 @@ configure :production do
   DataMapper.auto_upgrade!
 
   #force all traffic over https
-  require 'rack-ssl-enforcer'
-  use Rack::SslEnforcer
+  #require 'rack-ssl-enforcer'
+  #use Rack::SslEnforcer
 end
 
 configure :development do

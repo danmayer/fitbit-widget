@@ -68,7 +68,7 @@ public class FitbitMini extends DroidGap {
 		// raised errors on gmails cert
 		// ours as well, this overrides the ssl handler and accepts the cert if
 		// it is ours
-		// @Override
+		//@Override
 		public void onReceivedSslError(WebView view, SslErrorHandler handler,
 				SslError error) {
 			Log.d("WebAuth", "SSL error check/override continue: " + error);
