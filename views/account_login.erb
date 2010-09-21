@@ -18,7 +18,7 @@ Password:
 </li>
 </form>
 
-<% if ENV['rpx_key'] && params['app'].nil? && false %>
+<% if ENV['rpx_key'] && !params['app'] %>
 <li>
 <br/>
 Or login with the options below <br/>

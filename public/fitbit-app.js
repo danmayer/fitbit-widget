@@ -16,7 +16,7 @@ var getURL = function(path) {
       result = url_base+path+"?email="+user+"&password="+pass+"&app=true";
     }
   } else {
-    result = url_base+path;
+    result = url_base+path+"?app=true";
   }
   return result;
 };
