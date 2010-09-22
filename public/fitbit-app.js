@@ -1,9 +1,9 @@
 // Some methods are slightly different for apps vs the website.
 // This file has the app version of the methods
 
-//var url_base = "http://danmayer.dnsalias.com:4567";
+var url_base = "http://danmayer.dnsalias.com:4567";
 //var url_base = "https://fitbit-widget-staging.heroku.com";
-var url_base = "https://fitbit-widget.heroku.com";
+//var url_base = "https://fitbit-widget.heroku.com";
 var user = "";
 var pass = "";
 
@@ -19,6 +19,12 @@ var getURL = function(path) {
     result = url_base+path+"?app=true";
   }
   return result;
+};
+
+var menu = function() {
+  $("#menu").toggle();
+  window.scrollTo(0, 1);
+  return false;
 };
 
 var logoutGet = function() {
@@ -92,7 +98,7 @@ document.addEventListener("deviceready", function(){
       }, false); 
 
     document.addEventListener("menuKeyDown", function(){ 
-	alert("There really is no need for a menu in this app.\n So Fitbit mini was created by Dan Mayer cause he loves his fitbit.");
+	menu();
       }, false); 
 
   }, false); 

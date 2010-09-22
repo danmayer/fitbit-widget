@@ -30,3 +30,7 @@ __TODO__
 * menu with actual quit option (close option)
 * chris hates my fonts bug my design buddy for better design.
 * larger clickable links in the UI
+* add viewable notice for offline mode
+* Real cached assests
+* Better shared image solution than local images and full page to site images, same relative path.
+* Get rid of the stupid webkit orange highlight around clicks

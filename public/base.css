@@ -39,6 +39,22 @@ html, body {
  color: red;
 }
 
+#menu {
+    -webkit-border-radius: 10px;
+    background-color: rgba(0,0,0,.9);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    height: 140px;
+    left: 30px;
+    line-height: 20px;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    top: 120px;
+    width: 180px;
+}
+
 li.footer { color:#FFFFFF; background-image:url(/hover.png); background-repeat:repeat-x; line-height:30px;}
 li.footer a { color:#81F7F3 }
 

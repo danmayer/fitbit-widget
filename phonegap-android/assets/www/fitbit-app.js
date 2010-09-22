@@ -21,6 +21,12 @@ var getURL = function(path) {
   return result;
 };
 
+var menu = function() {
+  $("#menu").toggle();
+  window.scrollTo(0, 1);
+  return false;
+};
+
 var logoutGet = function() {
   actions = [];
   $.cookie("user", '');
@@ -92,7 +98,7 @@ document.addEventListener("deviceready", function(){
       }, false); 
 
     document.addEventListener("menuKeyDown", function(){ 
-	alert("There really is no need for a menu in this app.\n So Fitbit mini was created by Dan Mayer cause he loves his fitbit.");
+	menu();
       }, false); 
 
   }, false); 
