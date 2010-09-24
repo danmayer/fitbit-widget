@@ -81,6 +81,18 @@ jQuery(document).ready(function($) {
     
   });
 
+var watchAccel = function() {
+  var suc = function(a){
+    document.getElementById('x').innerHTML = roundNumber(a.x);
+    document.getElementById('y').innerHTML = roundNumber(a.y);
+    document.getElementById('z').innerHTML = roundNumber(a.z);
+  };
+  var fail = function(){};
+  var opt = {};
+  opt.frequency = 100;
+  timer = navigator.accelerometer.watchAcceleration(suc,fail,opt);
+}
+
 //Phonegap specific init
 document.addEventListener("deviceready", function(){ 
     device.overrideBackButton(); 
@@ -101,4 +113,5 @@ document.addEventListener("deviceready", function(){
 	menu();
       }, false); 
 
+    watchAccel();
   }, false); 

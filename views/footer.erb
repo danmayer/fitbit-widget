@@ -17,3 +17,12 @@
 <li class='footer'>
 Data Powered by <a href="http://fitbit.com" target="_parent">Fitbit</a>
 </li>
+<% if is_app? %>
+<li>
+<div id="accel-data">
+ x: <span id="x"></span>
+ y: <span id="y"></span>
+ z: <span id="z"></span>
+</div>
+</li>
+<% end %>
