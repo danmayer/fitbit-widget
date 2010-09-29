@@ -81,11 +81,29 @@ jQuery(document).ready(function($) {
     
   });
 
+function roundNumber(num) {
+  var dec = 3;
+  var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+  return result;
+}
+
+var step = 0;
+var last_x = 0;
+var last_y = 0;
+var last_z = 0;
 var watchAccel = function() {
   var suc = function(a){
     document.getElementById('x').innerHTML = roundNumber(a.x);
     document.getElementById('y').innerHTML = roundNumber(a.y);
     document.getElementById('z').innerHTML = roundNumber(a.z);
+    if( Math.abs(Math.pow((last_x+last_y+last_z),2)-Math.pow((a.x+a.y+a.z),2)) > 25 ) {
+      step = step + 1;
+    }
+    last_x = a.x;
+    last_y = a.y;
+    last_z = a.z;
+    document.getElementById('step').innerHTML = step;
+    
   };
   var fail = function(){};
   var opt = {};
