@@ -1,7 +1,8 @@
 // Some methods are slightly different for apps vs the website.
 // This file has the app version of the methods
 
-var url_base = "http://danmayer.dnsalias.com:4567";
+//var url_base = "http://danmayer.dnsalias.com:4567";
+var url_base = "http://fakelocal.com:4567";
 //var url_base = "https://fitbit-widget-staging.heroku.com";
 //var url_base = "https://fitbit-widget.heroku.com";
 var user = "";
@@ -113,23 +114,24 @@ var watchAccel = function() {
 
 //Phonegap specific init
 document.addEventListener("deviceready", function(){ 
-    device.overrideBackButton(); 
-    document.addEventListener("backKeyDown", function(){ 
-	if (actions.length>1) {
-	  current = actions.pop();
-	  recent = actions.pop();
-	  method = recent[0];
-	  args = recent[1];
-	  method(args);
-	} else {
-	  BackButton.reset();
-	  BackButton.exitApp();
-	}
-      }, false); 
+    //todo block if not on device
+    // device.overrideBackButton(); 
+//     document.addEventListener("backKeyDown", function(){ 
+// 	if (actions.length>1) {
+// 	  current = actions.pop();
+// 	  recent = actions.pop();
+// 	  method = recent[0];
+// 	  args = recent[1];
+// 	  method(args);
+// 	} else {
+// 	  BackButton.reset();
+// 	  BackButton.exitApp();
+// 	}
+//       }, false); 
 
-    document.addEventListener("menuKeyDown", function(){ 
-	menu();
-      }, false); 
+//     document.addEventListener("menuKeyDown", function(){ 
+// 	menu();
+//       }, false); 
 
-    watchAccel();
+//     watchAccel();
   }, false); 

@@ -117,6 +117,36 @@ get %r{^/widget/(.*)} do |id|
   end
 end
 
+post '/log_food' do
+  if @account
+    food = params['food']
+    quantity = params['quantity']
+    quantity_type = params['quantity_type']
+    quantity = "#{quantity} #{quantity_type}"
+    meal_type = params['meal_type']
+    food_date = if params['food_date']
+                  Time.parse(params['food_date'])
+                else
+                  Time.now
+                end
+
+    begin
+      fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
+      fitbit.submit_food_log({:food => food, :unit => quantity, :meal_type => meal_type, :date => food_date})
+    rescue => error
+      error_msg = "Sorry either the food can't be found or the quantity type is invalid for this type of food. Try again!"
+      session[:error_msg] = error_msg
+    end
+    if request.xhr?
+      render_home
+    else
+      redirect '/home'
+    end
+  else
+    redirect '/account'
+  end
+end
+
 ###
 # currently the easiest way to generate the phonegap app is visit
 # this action. It should be a rake task, but setting up the ENV in rake

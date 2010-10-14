@@ -1,6 +1,9 @@
-<% if @error_msg %>
+<% if @error_msg && @avg_steps==nil %>
 <li><span class="error-msg"><%= @error_msg %></span></li>
 <% else %>
+<% if @error_msg %>
+<li><span class="error-msg"><%= @error_msg %></span></li>
+<% end %>
       <li>
         <div class="nav-indicator-fixed"></div>
         <div class="nav-indicator">

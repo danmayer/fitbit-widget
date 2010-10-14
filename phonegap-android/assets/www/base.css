@@ -20,21 +20,19 @@ html, body {
 .iphone-scroll { list-style: none; padding:0; margin:0; font-family:Georgia, Times, serif; font-size:15px; }
 .iphone-scroll li {  }
 .iphone-scroll ul { list-style: none; padding:0; margin:0; }
-.iphone-scroll ul li {  }
-.iphone-scroll ul li { display:block; text-decoration:none; color:#000000; background-color:#FFFFFF; line-height:25px;
+.iphone-scroll ul li { line-height: 25px; }
+.iphone-scroll ul li { display:block; text-decoration:none; color:#000000;
   border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#CCCCCC; padding-left:10px; cursor:pointer; }
-.iphone-scroll ul li:hover { color:#FFFFFF; background-image:url(hover.png); background-repeat:repeat-x; }
+.iphone-scroll ul li:hover { color:#000000; }
 
 .iphone-scroll ul li.nohover { color:#000000; background-color:#FFFFFF; background-image:none; }
 
 .iphone-scroll ul li strong { margin-right:10px; }
  
-.nav-indicator { line-height:20px; background-image:url(nav-indicator-bg.png); background-repeat:repeat-x; color:#FFFFFF; text-indent:20px; }
-.nav-indicator a { color:#81F7F3 }
+.nav-indicator { font-size: 17px; color:#00394A; text-indent:20px;  background-color:#7AA4A8; line-height: 30px; }
  
 .nav-indicator-fixed { line-height:20px;
- background-image:url(nav-indicator-bg.png);
- background-repeat:repeat-x;
+  backgrouond-color:#000000;
  color:#FFFFFF;
  text-indent:20px;
  position:fixed;
@@ -60,8 +58,51 @@ html, body {
     width: 180px;
 }
 
-li.footer { color:#FFFFFF; background-image:url(hover.png); background-repeat:repeat-x; line-height:30px;}
-li.footer a { color:#81F7F3 }
+li.footer, .iphone-scroll ul li.footer{ 
+  color:#FFFFFF;
+  background-color:#00A47B;
+  border-bottom-width: 0px;
+  border-bottom-style:none;
+}
 
-.header { color:#FFFFFF; background-image:url(hover.png); background-repeat:repeat-x; line-height:30px;}
+.header { color:#FFFFFF; background-color:#0000A4; }
 .header a { color:#81F7F3 }
+
+
+/*
+** Shiny buttons
+** http://mwhenry.com/blog/2009/11/shiny-css-only-iphone-buttons/
+*/
+
+    input[type=button], .button {
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 1.3em;
+      font-weight: bold;
+      width: 97%;
+      height: 50px;
+      border: 3px solid #282726;
+      background: -webkit-gradient( linear, left top, left bottom, from(#e2e2e2), to(#8c8a88), color-stop(0.5, #acadae), color-stop(0.5, #82807e) );
+      margin: 0 0 3px 0;
+      text-shadow: 0px 1px 0 #cecece;
+      -webkit-background-origin: padding-box;
+      -webkit-background-clip: border-box;
+      -webkit-border-radius: 8px;
+    }
+
+    input[type=button]:hover, input[type=button].cancel,
+    input[type=button]:active, input[type=button].cancel:active,
+    .button:hover, .button:active
+     {
+      color: #fff;
+      text-shadow: none;
+    }
+
+    input[type=button]:hover, input[type=button].cancel:hover, 
+    .button:hover {
+      background: -webkit-gradient( linear, left top, left bottom, from(#aaaee5), to(#10006d), color-stop(0.5, #1F3B97), color-stop(0.5, #081f6f) );
+    }
+
+    input[type=button].cancel {
+      background: -webkit-gradient( linear, left top, left bottom, from(#5c5c5b), to(#1e1b16), color-stop(0.2, #1e1b16) );
+      margin-top: 6px;
+    }

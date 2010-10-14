@@ -28,6 +28,10 @@ def short_date_span(start_date, end_date)
 end
 
 def render_home
+  if session[:error_msg]
+    @error_msg = session[:error_msg]
+    session[:error_msg]=nil
+  end
   @navigate = true
   @start_date = if params[:previous]
                   Chronic.parse('yesterday', :now => Chronic.parse(params[:previous]))

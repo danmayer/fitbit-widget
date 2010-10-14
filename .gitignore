@@ -8,3 +8,4 @@ db/**
 *_complexity.erb
 phonegap-android/bin/
 .DS_Store
+releases/**
