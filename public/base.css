@@ -70,10 +70,23 @@ li.footer, .iphone-scroll ul li.footer{
 
 
 /*
+**
+** imported calories eaten structure comes from fitbit
+*/
+
+#dailyTotals, #firstBlock, .total, .label, .substance, .amount {
+  display: inline;
+}
+
+#dailyTotals h3 {
+    margin: 0px;
+    font-size: 16;
+}
+
+/*
 ** Shiny buttons
 ** http://mwhenry.com/blog/2009/11/shiny-css-only-iphone-buttons/
 */
-
     input[type=button], .button {
       font-family: "Helvetica Neue", Helvetica, sans-serif;
       font-size: 1.3em;

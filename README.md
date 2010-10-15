@@ -20,7 +20,6 @@ __GETTING STARTED__
 __TODO__
 * work on caching all the files/CSS/images
 * make it easier to get up and running (rake gems install? )
-* factor out various environment dependant stuff. (just use the configure :development etc for environments)
 * log currently logs password, apply a filter to the log to not record passwords.
 * support offline online mode on phonegap (currently sort of does with jquery-offline, but doesn't worn on older androids)
 * Use progressive updating via jquery opposed to the hardcoded onclick function calls.

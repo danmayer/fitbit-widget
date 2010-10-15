@@ -42,7 +42,13 @@ def render_home
                 end
   @end_date = Chronic.parse('7 days ago', :now => @start_date)
   get_account_data(@account, @start_date, @end_date)
+  get_calories_eaten_data(@account, @start_date)
   erb :home, :layout => (request.xhr? ? :partial_layout : :layout)
+end
+
+def get_calories_eaten_data(account, start_date)
+  @fitbit ||= RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
+  @calories_eaten = @fitbit.get_eaten_calories(start_date)[:calories_xml]
 end
 
 #TODO man this needs to be cleaned up, caching, repeated code, object creation
