@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
     $("#loading").ajaxStart(function() { $(this).show(); });
-    $("#loading").ajaxStop(function() {  $(this).hide(); });
+    $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); $(this).hide(); });
 
     $("#foodLogForm").submit( function(){ return foodSubmitForm(); } );
     

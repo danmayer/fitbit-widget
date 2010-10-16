@@ -30,6 +30,21 @@ var loginFormSubmit = function() {
   return false;
 };
 
+var foodSubmitForm = function() {
+  var dataString = $("foodLogForm").serialize();
+  $.ajax({  
+    type: "POST",  
+	url: "/log_food",  
+	data: dataString,  
+	success: function(content) {  
+	$("#content").empty().append(content);
+	sparklines();
+	hideLoading();
+      }
+    });
+  return false;
+};
+
 jQuery(document).ready(function($) {
     sparklines();
 });

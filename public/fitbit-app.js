@@ -2,9 +2,8 @@
 // This file has the app version of the methods
 
 //var url_base = "http://danmayer.dnsalias.com:4567";
-var url_base = "http://fakelocal.com:4567";
 //var url_base = "https://fitbit-widget-staging.heroku.com";
-//var url_base = "https://fitbit-widget.heroku.com";
+var url_base = "https://fitbit-widget.heroku.com";
 var user = "";
 var pass = "";
 
@@ -64,7 +63,14 @@ var loginFormSubmit = function() {
 
 var foodSubmitForm = function() {
  actions.push([getHome, null]);
-  var dataString = $("foodLogForm").serialize();
+ food_date = $("hidden#food_date").val();
+ food = $("input#food").val();
+ quantity = $("select#quantity").val();
+ quantity_type = $("select#quantity_type").val();
+ meal_type = $("select#meal_type").val();
+ //for some reasons this fails on my android
+ //var dataString = $("foodLogForm").serialize();
+ var dataString = 'food='+ food + '&quantity=' + quantity + '&quantity_type=' + quantity_type + '&food_date=' + food_date + '&meal_type=' + meal_type;
   $.ajax({  
     type: "POST",  
 	url: url_base+"/log_food",  
@@ -131,23 +137,23 @@ var watchAccel = function() {
 //Phonegap specific init
 document.addEventListener("deviceready", function(){ 
     //todo block if not on device
-    // device.overrideBackButton(); 
-//     document.addEventListener("backKeyDown", function(){ 
-// 	if (actions.length>1) {
-// 	  current = actions.pop();
-// 	  recent = actions.pop();
-// 	  method = recent[0];
-// 	  args = recent[1];
-// 	  method(args);
-// 	} else {
-// 	  BackButton.reset();
-// 	  BackButton.exitApp();
-// 	}
-//       }, false); 
+    device.overrideBackButton(); 
+    document.addEventListener("backKeyDown", function(){ 
+	if (actions.length>1) {
+	  current = actions.pop();
+	  recent = actions.pop();
+	  method = recent[0];
+	  args = recent[1];
+	  method(args);
+	} else {
+	  BackButton.reset();
+	  BackButton.exitApp();
+	}
+      }, false); 
 
-//     document.addEventListener("menuKeyDown", function(){ 
-// 	menu();
-//       }, false); 
+    document.addEventListener("menuKeyDown", function(){ 
+	menu();
+      }, false); 
 
 //     watchAccel();
   }, false); 

@@ -48,7 +48,7 @@ end
 
 def get_calories_eaten_data(account, start_date)
   @fitbit ||= RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
-  @calories_eaten = @fitbit.get_eaten_calories(start_date)[:calories_xml]
+  @calories_eaten = @fitbit.get_eaten_calories(start_date)[:calories_xml] rescue nil
 end
 
 #TODO man this needs to be cleaned up, caching, repeated code, object creation
