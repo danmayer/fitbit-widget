@@ -99,7 +99,7 @@ module SinatraSimpleAccount
     end
   end
 
-  get '/account' do
+  def render_account
     if @account
       erb :account, :layout => (request.xhr? ? :partial_layout : :layout)
     else
@@ -107,8 +107,13 @@ module SinatraSimpleAccount
     end
   end
 
+  get '/account' do
+    render_account
+  end
+
   get '/logout' do
     session["id"] = nil
+    @account = nil
     if request.xhr?
       erb :index, :layout => :partial_layout
     else

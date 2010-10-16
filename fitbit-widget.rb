@@ -80,7 +80,11 @@ end
 # actions
 get '/' do
   if session["id"]
-    redirect '/home'
+    if @account && account_complete?(@account)
+      render_home
+    else
+      render_account
+    end
   else
     erb :index, :layout => (request.xhr? ? :partial_layout : :layout)
   end

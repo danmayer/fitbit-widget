@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
     // Since jQuery.retrieveJSON delegates to jQuery's Ajax
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
-    $("#loading").ajaxStart(function() { $(this).show(); });
+    $("#loading").ajaxStart(function() { $(this).show(); window.scrollTo(0, 1); });
     $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); $(this).hide(); });
 
     $("#foodLogForm").submit( function(){ return foodSubmitForm(); } );
