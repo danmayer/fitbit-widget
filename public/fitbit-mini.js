@@ -21,6 +21,7 @@ var hideLoading = function() {
 
 var accountGet = function() {
   actions.push([accountGet, null]);
+  window.scrollTo(0, 1);
   $.retrieveGet(getURL("/account"), function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
@@ -39,6 +40,7 @@ var widgetGet = function() {
 
 var getHome = function(url) {
   actions.push([getHome, url]);
+  window.scrollTo(0, 1);
   console.log("calling home: "+getURL(url));
   $.retrieveGet(getURL(url), function(content) {
       console.log("got home");
@@ -52,13 +54,18 @@ var getHome = function(url) {
   return false;
 };
 
+var setupAutoComplete = function() {
+  $("#food").autocomplete('/food_complete',{delay:15, minChars:3});
+};
+
 jQuery(document).ready(function($) {
     // Since jQuery.retrieveJSON delegates to jQuery's Ajax
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
-    $("#loading").ajaxStart(function() { $(this).show(); window.scrollTo(0, 1); });
-    $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); $(this).hide(); });
+    $("#loading").ajaxStart(function() { $(this).show(); });
+    $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); setupAutoComplete(); $(this).hide(); });
 
+    setupAutoComplete();
     $("#foodLogForm").submit( function(){ return foodSubmitForm(); } );
     
     //immediately check to see if they should have thier account page or home page

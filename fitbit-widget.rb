@@ -121,6 +121,13 @@ get %r{^/widget/(.*)} do |id|
   end
 end
 
+get '/food_complete' do
+  fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
+  complete = fitbit.get_food_items(params['q'])
+  complete = complete.map{|food| food['name']}.uniq.reverse[0..10]
+  complete.join("\r\n")
+end
+
 post '/log_food' do
   if @account
     food = params['food']
@@ -138,6 +145,7 @@ post '/log_food' do
       fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
       fitbit.submit_food_log({:food => food, :unit => quantity, :meal_type => meal_type, :date => food_date})
     rescue => error
+      puts error
       error_msg = "Sorry either the food can't be found or the quantity type is invalid for this type of food. Try again!"
       session[:error_msg] = error_msg
     end

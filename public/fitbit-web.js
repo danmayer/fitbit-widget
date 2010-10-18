@@ -6,6 +6,7 @@ var getURL = function(path) {
 };
 
 var logoutGet = function(callback) {
+  window.scrollTo(0, 1);
   $.get("/logout", function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
@@ -14,6 +15,7 @@ var logoutGet = function(callback) {
 };
 
 var loginFormSubmit = function() {
+  window.scrollTo(0, 1);
   var email = $("input#email").val();
   var pass = $("input#password").val();
   var dataString = 'password='+ pass + '&email=' + email;
@@ -31,7 +33,15 @@ var loginFormSubmit = function() {
 };
 
 var foodSubmitForm = function() {
-  var dataString = $("foodLogForm").serialize();
+  window.scrollTo(0, 1);
+  food_date = $("input#food_date").val();
+  food = $("input#food").val();
+  quantity = $("select#quantity").val();
+  quantity_type = $("select#quantity_type").val();
+  meal_type = $("select#meal_type").val();
+  //for some reasons this doesn't work after ajax calls? Perhaps finds old form still in the dom?
+  //var dataString = $("foodLogForm").serialize();
+  var dataString = 'food='+ food + '&quantity=' + quantity + '&quantity_type=' + quantity_type + '&food_date=' + food_date + '&meal_type=' + meal_type;
   $.ajax({  
     type: "POST",  
 	url: "/log_food",  

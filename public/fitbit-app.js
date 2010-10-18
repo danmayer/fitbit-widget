@@ -28,6 +28,7 @@ var menu = function() {
 };
 
 var logoutGet = function() {
+  window.scrollTo(0, 1);
   actions = [];
   $.cookie("user", '');
   $.cookie("pass", '');
@@ -41,6 +42,7 @@ var logoutGet = function() {
 };
 
 var loginFormSubmit = function() {
+  window.scrollTo(0, 1);
   actions.push([getHome, null]);
   user = $("input#email").val();
   pass = $("input#password").val();
@@ -62,8 +64,9 @@ var loginFormSubmit = function() {
 };
 
 var foodSubmitForm = function() {
+  window.scrollTo(0, 1);
  actions.push([getHome, null]);
- food_date = $("hidden#food_date").val();
+ food_date = $("input#food_date").val();
  food = $("input#food").val();
  quantity = $("select#quantity").val();
  quantity_type = $("select#quantity_type").val();
