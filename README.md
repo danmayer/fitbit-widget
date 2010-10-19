@@ -33,3 +33,4 @@ __TODO__
 * Real cached assests
 * Better shared image solution than local images and full page to site images, same relative path.
 * Add arbitrary background tracking using accelerometers and/or GPS, so non fitbit users can have a value.
+* Food Log frequently double submits the food (disable form on submit)
