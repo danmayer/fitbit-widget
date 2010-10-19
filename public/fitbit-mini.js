@@ -54,10 +54,6 @@ var getHome = function(url) {
   return false;
 };
 
-var setupAutoComplete = function() {
-  $("#food").autocomplete('/food_complete',{delay:15, minChars:3});
-};
-
 jQuery(document).ready(function($) {
     // Since jQuery.retrieveJSON delegates to jQuery's Ajax
     // to make requests, we can just set up normal jQuery

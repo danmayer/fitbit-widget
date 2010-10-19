@@ -32,6 +32,10 @@ var loginFormSubmit = function() {
   return false;
 };
 
+var setupAutoComplete = function() {
+  $("#food").autocomplete('/food_complete',{delay:15, minChars:3});
+};
+
 var foodSubmitForm = function() {
   window.scrollTo(0, 1);
   food_date = $("input#food_date").val();

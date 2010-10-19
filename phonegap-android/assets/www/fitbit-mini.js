@@ -21,6 +21,7 @@ var hideLoading = function() {
 
 var accountGet = function() {
   actions.push([accountGet, null]);
+  window.scrollTo(0, 1);
   $.retrieveGet(getURL("/account"), function(content, status) {
       $("#content").empty().append(content);
       hideLoading();
@@ -39,6 +40,7 @@ var widgetGet = function() {
 
 var getHome = function(url) {
   actions.push([getHome, url]);
+  window.scrollTo(0, 1);
   console.log("calling home: "+getURL(url));
   $.retrieveGet(getURL(url), function(content) {
       console.log("got home");
@@ -57,8 +59,9 @@ jQuery(document).ready(function($) {
     // to make requests, we can just set up normal jQuery
     // Ajax listeners.
     $("#loading").ajaxStart(function() { $(this).show(); });
-    $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); $(this).hide(); });
+    $("#loading").ajaxStop(function() {   $("#foodLogForm").submit( function(){ return foodSubmitForm(); } ); setupAutoComplete(); $(this).hide(); });
 
+    setupAutoComplete();
     $("#foodLogForm").submit( function(){ return foodSubmitForm(); } );
     
     //immediately check to see if they should have thier account page or home page

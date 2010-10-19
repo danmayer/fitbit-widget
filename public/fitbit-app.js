@@ -2,8 +2,8 @@
 // This file has the app version of the methods
 
 //var url_base = "http://danmayer.dnsalias.com:4567";
-//var url_base = "https://fitbit-widget-staging.heroku.com";
-var url_base = "https://fitbit-widget.heroku.com";
+var url_base = "https://fitbit-widget-staging.heroku.com";
+//var url_base = "https://fitbit-widget.heroku.com";
 var user = "";
 var pass = "";
 
@@ -63,8 +63,12 @@ var loginFormSubmit = function() {
   return false;
 };
 
+var setupAutoComplete = function() {
+  $("#food").autocomplete(getURL("/food_complete"),{delay:15, minChars:3});
+};
+
 var foodSubmitForm = function() {
-  window.scrollTo(0, 1);
+ window.scrollTo(0, 1);
  actions.push([getHome, null]);
  food_date = $("input#food_date").val();
  food = $("input#food").val();
@@ -73,7 +77,7 @@ var foodSubmitForm = function() {
  meal_type = $("select#meal_type").val();
  //for some reasons this fails on my android
  //var dataString = $("foodLogForm").serialize();
- var dataString = 'food='+ food + '&quantity=' + quantity + '&quantity_type=' + quantity_type + '&food_date=' + food_date + '&meal_type=' + meal_type;
+ var dataString = 'food='+ food + '&quantity=' + quantity + '&quantity_type=' + quantity_type + '&food_date=' + food_date + '&meal_type=' + meal_type + "&email="+user+"&password="+pass+"&app=true";
   $.ajax({  
     type: "POST",  
 	url: url_base+"/log_food",  
