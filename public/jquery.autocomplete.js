@@ -20,8 +20,9 @@ $.fn.extend({
 			url: isUrl ? urlOrData : null,
 			data: isUrl ? null : urlOrData,
 			delay: isUrl ? $.Autocompleter.defaults.delay : 10,
-			max: options && !options.scroll ? 10 : 150
+					   max: 3
 		}, options);
+		//max: options && !options.scroll ? 10 : 150
 		
 		// if highlight is set to false, replace it with a do-nothing function
 		options.highlight = options.highlight || function(value) { return value; };
