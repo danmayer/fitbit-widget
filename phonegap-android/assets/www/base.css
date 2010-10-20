@@ -120,6 +120,9 @@ li.footer, .iphone-scroll ul li.footer{
       margin-top: 6px;
     }
 
+/*
+* autcomplete style
+*/
 .ac_results {
 	padding: 0px;
 	border: 1px solid black;
@@ -145,7 +148,7 @@ li.footer, .iphone-scroll ul li.footer{
 	if width will be 100% horizontal scrollbar will apear 
 	when scroll mode will be used
 	*/
-	/*width: 100%;*/
+	/*width: 100%;/**/
 	font: menu;
 	font-size: 12px;
 	/* 

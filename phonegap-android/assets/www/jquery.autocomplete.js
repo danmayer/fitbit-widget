@@ -20,8 +20,9 @@ $.fn.extend({
 			url: isUrl ? urlOrData : null,
 			data: isUrl ? null : urlOrData,
 			delay: isUrl ? $.Autocompleter.defaults.delay : 10,
-			max: options && !options.scroll ? 10 : 150
+					   max: 3
 		}, options);
+		//max: options && !options.scroll ? 10 : 150
 		
 		// if highlight is set to false, replace it with a do-nothing function
 		options.highlight = options.highlight || function(value) { return value; };
@@ -702,10 +703,14 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		show: function() {
 			var offset = $(input).offset();
 			element.css({
-				width: typeof options.width == "string" || options.width > 0 ? options.width : $(input).width(),
-				top: offset.top + input.offsetHeight,
-				left: offset.left
+			    width: '90%',
+			      top: window.pageYOffset,
+			      left: '5%'
 			}).show();
+			//left: offset.left + ((options.width > 0 ? options.width : $(input).width())/2)
+			//width: typeof options.width == "string" || options.width > 0 ? options.width : $(input).width(),
+                        //top: offset.top - listHeight,
+			//top: offset.top + input.offsetHeight,
             if(options.scroll) {
                 list.scrollTop(0);
                 list.css({
