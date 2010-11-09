@@ -34,3 +34,7 @@ __TODO__
 * Better shared image solution than local images and full page to site images, same relative path.
 * Add arbitrary background tracking using accelerometers and/or GPS, so non fitbit users can have a value.
 * Food Log frequently double submits the food (disable form on submit)
+* Cache food log requests
+* Updates parts of the Ruby API to use the new fitbit api
+* First screen / page after log in should load and say it is loading your current data.
+* Perhaps have the food log stuff show up as a second request as a div with ajax update
