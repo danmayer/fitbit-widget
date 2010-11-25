@@ -122,10 +122,13 @@ get %r{^/widget/(.*)} do |id|
 end
 
 get '/food_complete' do
-  fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
-  complete = fitbit.get_food_items(params['q'])
-  complete = complete.map{|food| food['name']}.uniq.reverse[0..10]
-  complete.join("\r\n")
+  food_key = "#{params['q']}-complete-text"
+  cached_data(food_key, {:format => 'text'}) {
+    fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
+    complete = fitbit.get_food_items(params['q'])
+    complete = complete.map{|food| food['name']}.uniq.reverse[0..10]
+    complete.join("\r\n")
+  }
 end
 
 post '/log_food' do
@@ -144,6 +147,8 @@ post '/log_food' do
     begin
       fitbit = RubyFitbit.new(@account.fitbit_email, @account.fitbit_pass)
       fitbit.submit_food_log({:food => food, :unit => quantity, :meal_type => meal_type, :date => food_date})
+      account_date_key = "#{@account.fitbit_email}-calories-#{format_date(food_date)}-text"
+      clear_cached_data(account_date_key)
     rescue => error
       puts error
       error_msg = "Sorry either the food can't be found or the quantity type is invalid for this type of food. Try again!"

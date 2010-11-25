@@ -47,19 +47,34 @@ def render_home
 end
 
 def get_calories_eaten_data(account, start_date)
-  @fitbit ||= RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
-  @calories_eaten = @fitbit.get_eaten_calories(start_date)[:calories_xml] rescue nil
+  account_date_key = "#{account.fitbit_email}-calories-#{format_date(start_date)}-text"
+  @calories_eaten = cached_data(account_date_key, {:format => 'text'}) {
+    @fitbit ||= RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
+    @fitbit.get_eaten_calories(start_date)[:calories_xml] rescue nil
+  }
 end
 
-def cached_data(key)
+def clear_cached_data(key)
+  cache_path = "tmp/#{key}.json"
+  File.delete(cache_path) if File.exists?(cache_path)
+end
+
+def cached_data(key, options = {})
   FileUtils.mkdir('tmp/') unless File.exists?('tmp/')
   cache_path = "tmp/#{key}.json"
 
+  format = options.fetch(:format){'json'}
   data = if File.exists?(cache_path)
-           JSON.parse(File.read(cache_path))
+           
+           if format=='json'
+             JSON.parse(File.read(cache_path))
+           else
+             File.read(cache_path)
+           end
          else
            result = yield
-           File.open(cache_path, 'w') {|f| f.write(result.to_json) }
+           cache_result = format=='json' ? result.to_json : result
+           File.open(cache_path, 'w') {|f| f.write(cache_result) }
            result
          end
 end
@@ -78,20 +93,6 @@ def get_account_data(account, start_date = nil, end_date = nil)
       #data = {'steps' => 0.22, 'calories' => 0.22, 'miles_walked' => 0.22}   
       data
     }
-
-#     FileUtils.mkdir('tmp/') unless File.exists?('tmp/')
-#     cache_path = "tmp/#{account.fitbit_email}-#{format_date(start_date)}.json"
-#     data = if File.exists?(cache_path)
-#              JSON.parse(File.read(cache_path))
-#            else
-#              @fitbit = RubyFitbit.new(account.fitbit_email,account.fitbit_pass)
-#              data = @fitbit.get_avg_data(start_date, end_date) 
-#              #for faster debugging
-#              #data = {'steps' => 0.22, 'calories' => 0.22, 'miles_walked' => 0.22}
-#              File.open(cache_path, 'w') {|f| f.write(data.to_json) }
-#              data
-#            end
-    
 
     account_aggregate_key = "#{account.fitbit_email}-aggregate-#{format_date(start_date)}"
     aggregate_data = cached_data(account_aggregate_key) {
