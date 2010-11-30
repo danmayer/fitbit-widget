@@ -3,7 +3,7 @@ require 'fileutils'
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
-#require 'do_postgres'
+require 'lib/heroku_tasks'
 
 task :default => ['test']
 
@@ -69,7 +69,7 @@ namespace :test do
   end
 end
 
-# hard to interact iwth sinatra straigh from rake, or at least I can't seem to find how.
+# hard to interact iwth sinatra straight from rake, or at least I can't seem to find how.
 # desc "render phonegap index page"
 # task :render_for_phonegap do
 #   require File.join(File.dirname(__FILE__), 'fitbit-widget.rb')
@@ -80,52 +80,3 @@ end
 #   local_filename tmp/index.html
 #   File.open(local_filename, 'w') {|f| f.write(content) }
 # end
-
-namespace :heroku do
-
-  desc "create a heroku project for you site"
-  task :create do
-    unless ENV.include?("name")	
-      raise "usage: rake heroku:create name=PROJECT_NAME # example danmayer-resume\n" 
-    end
-    project_name = ENV['name']
-    puts "creating heroku project #{project_name}"
-    puts `heroku create #{project_name}`
-    puts `git remote add heroku-production git@heroku.com:#{project_name}.git`
-  end
-
-  #todo make the first create, build the staging env by default
-  desc "create a heroku project for your resume"
-  task :create_staging do
-    unless ENV.include?("name")	
-      raise "usage: rake heroku:create_staging name=PROJECT_NAME # example danmayer-resume\n" 
-    end
-    project_name = "#{ENV['name']}-staging"
-    puts "creating heroku project #{project_name}"
-    puts `heroku create #{project_name}`
-    puts `git remote add heroku-staging git@heroku.com:#{project_name}.git`
-  end
-
-end
-
-namespace :deploy do
-  desc "Deploy production to Heroku."
-  task :production do
-    `git push heroku-production master`
-  end
-
-  desc "Deploy staging to Heroku."
-  task :staging do
-    `git push heroku-staging master`
-  end
-end
-
-namespace :github do
-  desc "render github index page, which can be displayed at user.github.com"
-  task :render_pages do	
-    require File.join(File.dirname(__FILE__), 'lib', 'resume_gem')
-    resume = Resume.new('resume.yml')
-    puts "writing resume github index files to disk"
-    resume.write_html_and_css_to_disk('./')
-  end
-end
