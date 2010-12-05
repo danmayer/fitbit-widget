@@ -36,12 +36,12 @@ configure :development do
   rescue LoadError
     require 'do_mysql'
     DataMapper::setup(:default, {
-                                 :adapter  => 'mysql',
-                                 :host     => 'localhost',
-                                 :username => 'root',
-                                 :password => '',
-                                 :database => 'fitbit_widget_development'
-                               })
+                        :adapter  => 'mysql',
+                        :host     => 'localhost',
+                        :username => 'root',
+                        :password => '',
+                        :database => 'fitbit_widget_development'
+                      })
   end
   # DataMapper.auto_migrate!
   DataMapper.auto_upgrade!

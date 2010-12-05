@@ -13,6 +13,9 @@ __GETTING STARTED__
   * you can do this via fitbit_email=my@email.com fitbit_pass=pass ruby fitbit-widget.rb or set them in your .bash_profile
 * `rake test`, to run the tests
 * `ruby fitbit-widget.rb` to start the sinatra server
+* Install gems that are in the .gems file, and install do_mysql, do_posgress, or do_sqlite3 depending on which DB you wish to dev on.
+* install json gem
+* `ruby fitbit-widget.rb`
 
 ## Author
 * Dan Mayer (danmayer)
