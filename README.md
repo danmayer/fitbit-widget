@@ -38,6 +38,4 @@ __TODO__
 * Add arbitrary background tracking using accelerometers and/or GPS, so non fitbit users can have a value.
 * Food Log frequently double submits the food (disable form on submit)
 * Updates parts of the Ruby API to use the new fitbit api
-* First screen / page after log in should load and say it is loading your current data.
 * fitbit-widget dates seem skewed by one
-* failed login messess up fututre page formatting wrong div gets overritten?

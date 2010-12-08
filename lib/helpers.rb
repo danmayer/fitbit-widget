@@ -27,6 +27,10 @@ def short_date_span(start_date, end_date)
   "#{end_date.strftime("%m/%d")} - #{start_date.strftime("%m/%d")}"
 end
 
+def render_wait
+  erb :wait, :layout => (request.xhr? ? :partial_layout : :layout)
+end
+
 def render_home
   if session[:error_msg]
     @error_msg = session[:error_msg]

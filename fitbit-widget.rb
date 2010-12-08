@@ -81,13 +81,17 @@ end
 get '/' do
   if session["id"]
     if @account && account_complete?(@account)
-      render_home
+      render_wait
     else
       render_account
     end
   else
     erb :index, :layout => (request.xhr? ? :partial_layout : :layout)
   end
+end
+
+get '/wait' do
+  render_wait
 end
 
 get '/home' do

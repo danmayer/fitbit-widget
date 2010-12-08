@@ -46,15 +46,15 @@ get_local_resource('/fitbit-web.js') %>"></script>
 	  <img src="<%=get_local_resource('/spinner.gif') %>"
 	  alt="loading..." /></span>
         </div>
-<div id="content">
-<%= yield %>
-
-<ul class="iphone-scroll">
-<div id='footer'>
-<%=erb :footer, :layout => false %>
-</div>
-</ul>
-</div>
+	<div id="content">
+	  <%= yield %>
+  
+	  <ul class="iphone-scroll">
+	    <div id='footer'>
+	      <%=erb :footer, :layout => false %>
+	    </div>
+	  </ul>
+	</div>
 </div>
 
 <% if is_app? %> 

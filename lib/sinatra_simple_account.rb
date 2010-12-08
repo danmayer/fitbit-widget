@@ -47,8 +47,7 @@ module SinatraSimpleAccount
     account.save!
     if account_complete?(account)
       if request.xhr?
-        @account = account
-        render_home
+        render_wait
       else
         redirect '/home'
       end

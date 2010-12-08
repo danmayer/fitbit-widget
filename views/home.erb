@@ -1,2 +1,6 @@
 <%=erb :view_data, :layout => false %>
+<% if @error_msg && @avg_steps==nil %>
+Please edit your fitbit account info by visiting the account page. No features work with out a valid account.
+<% else %>
 <%=erb :food_log, :layout => false %>
+<% end %>
