@@ -2,7 +2,7 @@
 
 A simple app to help users brows fitbit data on mobile devices or embed it in webpages.
 
-Also a example of how to build mobile sites and apps.
+Also a example of how to build mobile sites which can power mobile apps.
 
 __GETTING STARTED__
 
@@ -11,14 +11,14 @@ __GETTING STARTED__
 * Unfortunately to really try this code you need a fitbit account
   * set fitbit_email and fitbit_pass to your environment to get tests or the project working
   * you can do this via fitbit_email=my@email.com fitbit_pass=pass ruby fitbit-widget.rb or set them in your .bash_profile
-* `rake test`, to run the tests
+* `rake`, to run the tests
 * `ruby fitbit-widget.rb` to start the sinatra server
 * Install gems that are in the .gems file, and install do_mysql, do_posgress, or do_sqlite3 depending on which DB you wish to dev on.
 * install json gem
 * `ruby fitbit-widget.rb`
 
 ## Author
-* Dan Mayer (danmayer)
+* Dan Mayer (@danmayer)
 
 __TODO__
 * work on caching all the files/CSS/images / minifying them all as part of deployment process

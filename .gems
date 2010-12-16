@@ -1,5 +1,5 @@
 sinatra --version 1.0
-ruby-fitbit --version 0.3.1
+ruby-fitbit --version 0.4.0
 chronic
 rack-ssl-enforcer --version 0.1.2
 dm-core --version 0.10.2
