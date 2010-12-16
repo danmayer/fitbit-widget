@@ -37,10 +37,10 @@ get_local_resource('/fitbit-web.js') %>"></script>
 
 <body onload="init();">
 <div class="iphone-scrollcontainer">
-   <ul class="iphone-scroll">
+   <ul class="iphone-scroll afs-gentium-book-basic">
       <li>
         <div class="nav-indicator-fixed"></div>
-        <div class="nav-indicator">
+        <div class="nav-indicator afs-ubuntu">
 	  Fitbit Mini
 	  <span id="loading" style="display:none">
 	  <img src="<%=get_local_resource('/spinner.gif') %>"
@@ -50,7 +50,7 @@ get_local_resource('/fitbit-web.js') %>"></script>
 	  <%= yield %>
   
 	  <ul class="iphone-scroll">
-	    <div id='footer'>
+	    <div id='footer' class='afs-charis-sil'>
 	      <%=erb :footer, :layout => false %>
 	    </div>
 	  </ul>

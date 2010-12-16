@@ -1,0 +1,7 @@
+Copyright 2010 Canonical Ltd.
+
+This Font Software is licensed under the Ubuntu Font License, Version
+1.0.  This license is derived from the SIL Open Font License (OFL) 1.1,
+and intended to merge with a future version of the OFL. The OFL 1.1 is
+available with a FAQ at http://scripts.sil.org/OFL
+

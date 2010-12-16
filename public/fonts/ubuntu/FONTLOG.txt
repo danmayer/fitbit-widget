@@ -1,0 +1,87 @@
+This is the FONTLOG file for the Ubuntu Font Family and attempts to follow
+the recommendations at:  http://scripts.sil.org/OFL-FAQ_web#43cecb44
+
+
+Overview
+
+The new Ubuntu Font Family was started to enable the personality of
+Ubuntu to be seen and felt in every menu, button and dialog.
+The typeface is sans-serif, uses OpenType features and is manually
+hinted for clarity on desktop and mobile computing screens.
+
+The scope of the Ubuntu Font Family includes all the languages used by
+the various Ubuntu users around the world in tune with Ubuntu's
+philosophy which states that every user should be able to use their
+software in the language of their choice. So the Ubuntu Font Family
+project will be extended to cover many more written languages.
+
+
+History
+
+The Ubuntu Font Family has been creating during 2010.  As of September 2010
+coverage is provided for Latin, Cyrillic and Greek across Regular, Italic,
+Bold and Bold-Italic.
+
+
+Acknowledgements
+
+If you make modifications be sure to add your name (N), email (E),
+web-address (if you have one) (W) and description (D). This list is in
+alphabetical order.
+
+N: Amélie Bonet
+N: Ron Carpenter
+N: Vincent Connare
+N: Lukas Paltram
+D: Type design with Dalton Maag
+
+N: Dave Crossland
+E: dave@lab6.com
+W: http://www.lab6.com/
+D: Documentation and licensing guideance
+
+N: Iain Farrell
+W: http://www.flickr.com/photos/iain
+D: Ubuntu Font Family delivery for the Ubuntu UX team
+
+N: Shiraaz Gabru
+D: Ubuntu Font Family project management at Dalton Maag
+
+N: Bruno Maag
+W: http://www.daltonmaag.com/
+D: Stylistic direction of the Ubuntu Font Family, as head of Dalton Maag
+
+N: Ivanka Majic
+W: http://www.ivankamajic.com/
+D: Guiding the UX team and Cyrillic feedback
+
+N: David Marshall
+N: Malcolm Wooden
+W: http://www.daltonmaag.com/
+D: Font Engineering and technical direction
+
+N: Mark Shuttleworth
+E: mark@ubuntu.com
+W: http://www.markshuttleworth.com/
+D: Executive quality-control and funding
+
+N: Paul Sladen
+E: ubuntu@paul.sladen.org
+W: http://www.paul.sladen.org/
+D: Bug triaging, packaging
+
+N: Nicolas Spalinger
+W: http://openfontlibrary.org/wiki/Nicolas_Spalinger
+D: Continuous guidance on Libre font licencing, file layout, and pkg-font packaging
+
+N: Kenneth Wimer
+D: Initial PPA packaging
+
+* Canonical Ltd is the primary commericial sponsor of the Ubuntu and
+  Kubuntu operating systems
+* Dalton Maag are a custom type foundary headed by Bruno Maag
+
+For further documentation, information on contributors, source code
+downloads and those involved with the Ubuntu Font Family, visit:
+
+  http://font.ubuntu.com/

@@ -171,3 +171,162 @@ li.footer, .iphone-scroll ul li.footer{
 	background-color: #0A246A;
 	color: white;
 }
+
+/*
+* fontstacks from http://awesome-fontstacks.com/bundles/19 
+* http://awesome-fontstacks.com/bundles/new?family_ids=193,220,228,193
+*/
+.afs-ubuntu { font-family: "Ubuntu", "Lucida Grande", "Arial", "Verdana", "Helvetica", "Gill Sans", sans-serif; ;}
+
+.afs-gentium-book-basic { font-family: "Gentium Book Basic", "Georgia", "Palatino", "Times New Roman", "Baskerville", "Hoefler Text", serif; font-size: 114.54%;}
+
+.afs-charis-sil { font-family: "Charis SIL", "Georgia", "Palatino", "Times New Roman", "Baskerville", "Hoefler Text", serif; font-size: 107.88%;}
+
+.afs-ubuntu { font-family: "Ubuntu", "Lucida Grande", "Arial", "Verdana", "Helvetica", "Gill Sans", sans-serif; font-size: 100.00%;}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-I-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-I-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-I-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-I-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: italic;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-B-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-B-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-B-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-B-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-R-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-R-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-R-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-R-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-BI-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-BI-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-BI-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-BI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: italic;
+}
+
+
+
+@font-face {
+font-family: Gentium Book Basic;
+src: url('/fonts/Gentium-Basic/GenBkBasI-webfont.ttf');
+src: local('☺'), url('/fonts/Gentium-Basic/GenBkBasI-webfont.woff') format('woff'), url('/fonts/Gentium-Basic/GenBkBasI-webfont.ttf') format('truetype'), url('/fonts/Gentium-Basic/GenBkBasI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: italic;
+}
+
+
+@font-face {
+font-family: Gentium Book Basic;
+src: url('/fonts/Gentium-Basic/GenBkBasR-webfont.ttf');
+src: local('☺'), url('/fonts/Gentium-Basic/GenBkBasR-webfont.woff') format('woff'), url('/fonts/Gentium-Basic/GenBkBasR-webfont.ttf') format('truetype'), url('/fonts/Gentium-Basic/GenBkBasR-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Gentium Book Basic;
+src: url('/fonts/Gentium-Basic/GenBkBasBI-webfont.ttf');
+src: local('☺'), url('/fonts/Gentium-Basic/GenBkBasBI-webfont.woff') format('woff'), url('/fonts/Gentium-Basic/GenBkBasBI-webfont.ttf') format('truetype'), url('/fonts/Gentium-Basic/GenBkBasBI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: italic;
+}
+
+
+@font-face {
+font-family: Gentium Book Basic;
+src: url('/fonts/Gentium-Basic/GenBkBasB-webfont.ttf');
+src: local('☺'), url('/fonts/Gentium-Basic/GenBkBasB-webfont.woff') format('woff'), url('/fonts/Gentium-Basic/GenBkBasB-webfont.ttf') format('truetype'), url('/fonts/Gentium-Basic/GenBkBasB-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: normal;
+}
+
+
+
+@font-face {
+font-family: Charis SIL;
+src: url('/fonts/Charis-SIL/CharisSILB-webfont.ttf');
+src: local('☺'), url('/fonts/Charis-SIL/CharisSILB-webfont.woff') format('woff'), url('/fonts/Charis-SIL/CharisSILB-webfont.ttf') format('truetype'), url('/fonts/Charis-SIL/CharisSILB-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Charis SIL;
+src: url('/fonts/Charis-SIL/CharisSILBI-webfont.ttf');
+src: local('☺'), url('/fonts/Charis-SIL/CharisSILBI-webfont.woff') format('woff'), url('/fonts/Charis-SIL/CharisSILBI-webfont.ttf') format('truetype'), url('/fonts/Charis-SIL/CharisSILBI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: italic;
+}
+
+
+@font-face {
+font-family: Charis SIL;
+src: url('/fonts/Charis-SIL/CharisSILR-webfont.ttf');
+src: local('☺'), url('/fonts/Charis-SIL/CharisSILR-webfont.woff') format('woff'), url('/fonts/Charis-SIL/CharisSILR-webfont.ttf') format('truetype'), url('/fonts/Charis-SIL/CharisSILR-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Charis SIL;
+src: url('/fonts/Charis-SIL/CharisSILI-webfont.ttf');
+src: local('☺'), url('/fonts/Charis-SIL/CharisSILI-webfont.woff') format('woff'), url('/fonts/Charis-SIL/CharisSILI-webfont.ttf') format('truetype'), url('/fonts/Charis-SIL/CharisSILI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: italic;
+}
+
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-I-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-I-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-I-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-I-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: italic;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-B-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-B-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-B-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-B-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-R-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-R-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-R-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-R-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 400;
+font-style: normal;
+}
+
+
+@font-face {
+font-family: Ubuntu;
+src: url('/fonts/ubuntu/Ubuntu-BI-webfont.ttf');
+src: local('☺'), url('/fonts/ubuntu/Ubuntu-BI-webfont.woff') format('woff'), url('/fonts/ubuntu/Ubuntu-BI-webfont.ttf') format('truetype'), url('/fonts/ubuntu/Ubuntu-BI-webfont.svg#webfontX4pGz9fc') format('svg');
+font-weight: 700;
+font-style: italic;
+}
