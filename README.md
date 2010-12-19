@@ -28,7 +28,7 @@ __TODO__
 * move sinatra simple account to gem and provide plugin mechanism.
   * ie use SinatraSimpleAccount :success => x, :protocall => {} , etc
   * clean up and make all the above options setable
-* menu with actual quit option (close option)
+* Android menu with actual quit option (close option)
 * larger clickable links in the UI
 * add viewable notice for offline mode
 * Real cached assests
