@@ -704,7 +704,8 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			var offset = $(input).offset();
 			element.css({
 			    width: '90%',
-			      top: window.pageYOffset,
+			      /*top: window.pageYOffset,*/
+			      top: offset.top - 63,
 			      left: '5%'
 			}).show();
 			//left: offset.left + ((options.width > 0 ? options.width : $(input).width())/2)
