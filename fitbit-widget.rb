@@ -112,6 +112,7 @@ end
 
 #TODO move to production only 24 hr varnish HTTP cache
 get %r{^/widget/(.*)} do |id|
+  headers['Cache-Control'] = 'public, max-age=6000'
   account = Account.get(:token => id)
   #default to the example account (mine, to show an example)
   account ||= OpenStruct.new(:fitbit_email => ENV['fitbit_email'], :fitbit_pass => ENV['fitbit_pass'])
