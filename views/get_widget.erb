@@ -10,9 +10,9 @@ To use this service, your fitbit email and password are required.
     <br/>
     Once your user and password are added you should be able to embed a widget with the code below.<br/>
     <textarea cols='50' rows='5'><iframe height="320px"
-    frameborder="1" width="200px" scrolling="no" src="http://<%= "#{request.env['HTTP_HOST']}/widget/#{@account.token}" %>" name="fitbit"></iframe></textarea>
+     frameborder="1" width="200px" scrolling="no" src="<%= "#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/widget/#{@account.token}" %>" name="fitbit"></iframe></textarea>
     <br/><br/>
     Preview:<br/>
     <iframe height="320px" frameborder="1" width="200px"
-    scrolling="no" src="http://<%= "#{request.env['HTTP_HOST']}/widget/#{@account.token}" %>"
+    scrolling="no" src="<%= "#{CALLBACK_URI_PREFIX}#{request.env['HTTP_HOST']}/widget/#{@account.token}" %>"
     name="fitbit"></iframe>

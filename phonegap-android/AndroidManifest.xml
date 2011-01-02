@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.mayerdan.fitbitmini" android:versionName="1.7" android:versionCode="5">
+      package="com.mayerdan.fitbitmini" android:versionName="1.8" android:versionCode="6">
     <supports-screens
     	android:largeScreens="true"
     	android:normalScreens="true"
