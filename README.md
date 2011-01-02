@@ -38,3 +38,4 @@ __TODO__
 * Updates parts of the Ruby API to use the new fitbit api
 * fitbit-widget dates seem skewed by one
 * after posting a food log item it has two main content areas (post to food log and click account link)
+* use the html5 email attribute form field for the login

@@ -1,21 +1,15 @@
 package com.mayerdan.fitbitmini;
 
-//import android.R;
-import android.app.Activity;
 import android.content.Context;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-
 import com.phonegap.*;
-import com.phonegap.DroidGap.GapClient;
 
 public class FitbitMini extends DroidGap {
 	
@@ -28,6 +22,7 @@ public class FitbitMini extends DroidGap {
 	//http://www.anddev.org/simple_splash_screen-t811.html
 	private Handler splashHandler = new Handler() {
 		// @Override
+		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case STOPSPLASH:
