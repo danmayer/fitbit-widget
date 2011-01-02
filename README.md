@@ -37,3 +37,4 @@ __TODO__
 * Food Log frequently double submits the food (disable form on submit)
 * Updates parts of the Ruby API to use the new fitbit api
 * fitbit-widget dates seem skewed by one
+* after posting a food log item it has two main content areas (post to food log and click account link)
