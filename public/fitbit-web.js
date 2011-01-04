@@ -37,7 +37,7 @@ var setupAutoComplete = function() {
 };
 
 var foodSubmitForm = function() {
-  $("#log_food_submit").disable();
+  $("#log_food_submit").attr("disabled", "true");
   window.scrollTo(0, 1);
   food_date = $("input#food_date").val();
   food = $("input#food").val();
