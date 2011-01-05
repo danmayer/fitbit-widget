@@ -2,6 +2,8 @@
 
 A simple app to help users brows fitbit data on mobile devices or embed it in webpages.
 
+Demo: http://fitbit-widget.heroku.com
+
 Also a example of how to build mobile sites which can power mobile apps.
 
 __GETTING STARTED__
