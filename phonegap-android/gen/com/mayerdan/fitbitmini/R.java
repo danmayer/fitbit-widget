@@ -13,6 +13,7 @@ public final class R {
     public static final class drawable {
         public static final int fitbitsplash=0x7f020000;
         public static final int icon=0x7f020001;
+        public static final int icon_hi=0x7f020002;
     }
     public static final class id {
         public static final int appView=0x7f050000;
